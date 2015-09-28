@@ -9,6 +9,6 @@ class IndexController extends Controller {
     }
 
     public function hehe() {
-    	echo 'xxx';
+    	echo 'peng';
     }
 }
