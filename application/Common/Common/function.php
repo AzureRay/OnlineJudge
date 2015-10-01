@@ -1,7 +1,7 @@
 <?php
 function sqlInjectionFilter() {
-	array_walk($_GET,     function(&$v, $k) { $v = sqlFilter($v); });
-    array_walk($_POST,    function(&$v, $k) { $v = sqlFilter($v); });
+	array_walk($_GET,	function(&$v, $k) { $v = sqlFilter($v); });
+	array_walk($_POST,	function(&$v, $k) { $v = sqlFilter($v); });
 }
 
 function sqlFilter() {
@@ -12,9 +12,10 @@ function sqlFilter() {
 
 function dbg() {
 	if (C('ISDEBUG')) {
-	    if (func_num_args() === 0)
-	        return;
-	    $vars = func_get_args();
-	    var_dump($vars);
+		if (func_num_args() === 0) {
+			return;
+		}
+		$vars = func_get_args();
+		var_dump($vars);
 	}
 }
