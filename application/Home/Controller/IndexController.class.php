@@ -1,14 +1,13 @@
 <?php
 namespace Home\Controller;
+
 use Think\Controller;
+use Home\Model\UserModel;
 
-class IndexController extends Controller {
+class IndexController extends TemplateController {
 
-    public function index(){
-        $this->show('hehehe','utf-8');
-    }
-
-    public function hehe() {
-    	echo 'xxx';
+    public function index() {
+    	$userModel = UserModel::instance();
+    	echo $userModel->test();
     }
 }
