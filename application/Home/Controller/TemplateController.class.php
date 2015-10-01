@@ -9,7 +9,6 @@ class TemplateController extends Controller {
 	public $isNeedLogin = false;
 	private $ISDEBUG = false;
 
-
 	public function _initialize() {
 
 		header("Pragma: no-cache"); // HTTP/1.0
