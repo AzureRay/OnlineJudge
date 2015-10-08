@@ -6,8 +6,11 @@ use Home\Model\UserModel;
 
 class IndexController extends TemplateController {
 
+	public function _initialize() {
+        parent::_initialize();
+	}
+
 	public function index() {
-		$userModel = UserModel::instance();
-		echo $userModel->test();
+		echo 'xxx';
 	}
 }
