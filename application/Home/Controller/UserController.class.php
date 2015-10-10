@@ -1,7 +1,5 @@
 <?php
 namespace Home\Controller;
-
-use Think\Controller;
 use Home\Model\UserModel;
 
 class UserController extends TemplateController {
@@ -11,14 +9,25 @@ class UserController extends TemplateController {
 	}
 
 	public function login() {
-
+		if (empty($this->userInfo['userId'])) {
+			$userId = I('get.userId', '', 'trim,htmlspecialchars');
+			$password = I('get.password', '', 'trim,htmlspecialchars');
+			$res = UserModel::instance()->loginByUidPassword($userId, $password);
+			if ($res['code'] != 1001) {
+				echo $res['msg'];
+			} else {
+				echo $res['msg'];
+			}
+		} else {
+			echo 'online';
+		}
 	}
 
 	public function register() {
 
 	}
 
-	public function update() {
+	public function modify() {
 
 	}
 
@@ -26,15 +35,15 @@ class UserController extends TemplateController {
 
 	}
 
-	public function doRegister() {
-
-	}
-
 	public function doLogin() {
 
 	}
 
-	public function updateUserInfo() {
+	public function doRegister() {
+
+	}
+
+	public function doModify() {
 
 	}
 }
