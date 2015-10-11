@@ -1,6 +1,8 @@
 <?php
 namespace Home\Controller;
 use Home\Model\UserModel;
+use Home\Model\LogsModel;
+use Home\Model\PrivilegeModel;
 
 class UserController extends TemplateController {
 
@@ -9,36 +11,72 @@ class UserController extends TemplateController {
 	}
 
 	public function login() {
+		echo 'login action';
 	}
 
 	public function register() {
+		echo 'register action';
 	}
 
 	public function modify() {
+		echo 'modify action';
 	}
 
 	public function logout() {
+
+		$ip1=get_client_ip(0, 1);//$_SERVER['REMOTE_ADDR'];
+		ddbg($ip1);
+		echo 'logout action';
 	}
 
 	public function doLogin() {
-		if (empty($this->userInfo['userId'])) {
+		if (empty($this->userInfo['user_id'])) {
 			$userId = I('get.userId', '', 'trim,htmlspecialchars');
 			$password = I('get.password', '', 'trim,htmlspecialchars');
-			$res = UserModel::instance()->loginByUidPassword($userId, $password);
+			$res = UserModel::instance()->isRightPassword($userId, $password);
 			if ($res['code'] != 1001) {
-				errorReturn($res['code'], $res['msg']);
+				resultReturn($res['code'], array('msg' => $res['msg']));
 			} else {
+				do {
+					if (true || C('OJ_VIP_CONTEST')) {
+						$isAdmin = PrivilegeModel::instance()->isAdministrator($userId);
+						if (false && $isAdmin) {
+							break;
+						} else {
+							$today = date('Y-m-d');
+							$ip = get_client_ip();
+							$where = array(
+								'user_id' => $userId,
+								'ip' 	  => array('neq', $ip),
+								'time' 	  => array('egt', $today)
+							);
+							$order = array('time' => 'desc');
+							$res = LogsModel::instance()->getLog($where, 1, $order);
+							ddbg($res);
+							if (!empty($res)) {
+								resultReturn(1002, array(
+									'msg' => '比赛期间请不要在不同机器上登录账号！请联系管理员!'
+									)
+								);
+							}
+						}
+					}
+				} while(false);
+
 				$this->initSessionByUserId($userId);
-				echo $res['msg'];
+				$_password = UserModel::instance()->generatePassword($password);
+
+				// TODO add login log
+				$this->success('欢迎使用SDIBTOJ系统,加油AC吧!', U('Index/index'), 3);
 			}
 		} else {
-			errorReturn(1002, '您已经登陆！');
+			resultReturn(1002, array('msg' => '您已经登陆！'));
 		}
 	}
 
 	public function doRegister() {
 		$userId = I('post.userId', '');
-		$unick  = I('post.nick', $userId);
+		$unick  = I('post.nick', '');
 		$password = I('post.password', '');
 		$rptPassword = I('post.rptpassword', '');
 		$school = I('post.school', '');
@@ -49,7 +87,7 @@ class UserController extends TemplateController {
 		$sessionVCode = session('vcode');
 		if ($sessionVCode != $vcode || empty($vcode)) {
 			session('vcode', null);
-			errorReturn(1002, array('msg' => '验证码错误!'));
+			resultReturn(1002, array('msg' => '验证码错误!'));
 		}
 
 		$this->filterParam($userId, $unick, $password, $rptpassword, $school, $email);
@@ -59,61 +97,95 @@ class UserController extends TemplateController {
 		if (empty($user)) {
 			$res = $userModel->addUserInfo($userId, $unick, $password, $school, $email);
 			if ($res > 0) {
-				// TODO do login thing
+				// TODO judge is vip contest
+				$this->initSessionByUserId($userId);
+				// TODO do login log
 			} else {
-				errorReturn(1002, array('msg' => '系统错误,注册失败!'));
+				resultReturn(1002, array('msg' => '系统错误,注册失败!'));
 			}
 		} else {
-			errorReturn(1002, array('msg' => '用户已存在!'));
+			resultReturn(1002, array('msg' => '用户已存在!'));
 		}
 	}
 
 	public function doModify() {
-		$userId = I('post.userId', '');
-		$unick  = I('post.nick', $userId);
-		$password = I('post.password', '');
-		$rptPassword = I('post.rptpassword', '');
-		$school = I('post.school', '');
-		$email  = I('post.email', '');
+		if (empty($this->userInfo)) {
+			redirect(U('login'), 1, '请先登录账号!');
+		} else {
+			$userId = session('user_id');
+			$unick  = I('post.nick', $userId);
+			$password = I('post.password', '');
+			$npassword = I('post.npassword', '');
+			$rptPassword = I('post.rptpassword', '');
+			$school = I('post.school', '');
+			$email  = I('post.email', '');
 
-		$this->filterParam($userId, $unick, $password, $rptpassword, $school, $email);
+			$res = UserModel::instance()->isRightPassword($userId, $password);
+			if ($res['code'] != 1001) {
+				resultReturn($res['code'], array('msg' => $res['msg']));
+			} else {
+				if (strlen($npassword) != 0) {
+					$password = $npassword;
+				} else {
+					$rptpassword = $password;
+				}
 
+				$this->filterParam($userId, $unick, $password, $rptpassword, $school, $email);
+				$password = UserModel::instance()->generatePassword($password);
+				$where = array(
+					'user_id' => $userId
+				);
+				$option = array(
+					'nick'	   => $unick,
+					'school'   => $school,
+					'email'    => $email,
+					'password' => $password,
+				);
+				UserModel::instance()->updateUserInfo($where, $option);
+				$this->success('个人信息修改成功', U('modify'), 2);
+			}
+		}
 	}
 
 	public function doLogout() {
-		session('userId', null);
-		session('[destory]');
+		session('user_id', null);
+		session_destroy();
+		$this->success('记得下次再来AC哦!', U('Index/index'), 2);
 	}
 
-	private function filterParam($userId, $unick, $password, $rptpassword, $school, $email) {
+	private function filterParam($userId, &$unick, $password, $rptpassword, $school, $email) {
 		if (!isValidStringLength($userId, 3, 20)) {
-			errorReturn(1002, array('msg' => '用户ID长度限制在3-20之间!'));
+			resultReturn(1002, array('msg' => '用户ID长度限制在3-20之间!'));
 		}
 		if (!isValidUserId($userId)) {
-			errorReturn(1002, array('msg' => '用户ID只能包含数字和字母!'));
+			resultReturn(1002, array('msg' => '用户ID只能包含数字和字母!'));
 		}
 
 		if (!isValidStringLength($unick, -1, 100)) {
-			errorReturn(1002, array('msg' => '用户昵称长度不符合规范!'));
+			resultReturn(1002, array('msg' => '用户昵称长度不符合规范!'));
+		}
+
+		if (empty($unick)) {
+			$unick =  $userId;
 		}
 
 		if (strcmp($password, $rptpassword) != 0) {
-			errorReturn(1002, array('msg' => '密码填写不一致!'));
+			resultReturn(1002, array('msg' => '密码填写不一致!'));
 		}
 
 		if (!isValidStringLength($password, 6)) {
-			errorReturn(1002, array('msg' => '密码长度至少6位!'));
+			resultReturn(1002, array('msg' => '密码长度至少6位!'));
 		}
 
 		if (!isValidStringLength($school, -1, 100)) {
-			errorReturn(1002, array('msg' => '学校名称长度不符合规范!'));
+			resultReturn(1002, array('msg' => '学校名称长度不符合规范!'));
 		}
 
 		if (!isValidStringLength($email, -1, 100)) {
-			errorReturn(1002, array('msg' => '邮箱长度不符合规范!'));
+			resultReturn(1002, array('msg' => '邮箱长度不符合规范!'));
 		} else {
 			if (!empty($email) && !$isValidEmail($email)) {
-				errorReturn(1002, array('msg' => '邮箱格式不符合规范!'));
+				resultReturn(1002, array('msg' => '邮箱格式不符合规范!'));
 			}
 		}
 	}

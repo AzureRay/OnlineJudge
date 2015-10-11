@@ -32,7 +32,7 @@
 		}
 	}
 
-	function errorReturn($code, $msg = '') {
+	function resultReturn($code, $msg = '') {
 		$return = array();
 		$return['code'] = $code;
 		$return['result'] = $msg;
@@ -44,15 +44,15 @@
 
 	function dbg($vars) {
 		if (C('ISDEBUG')) {
-			var_dump($vars);
-			echo "<br/>";
+			dump($vars);
+			echo "<hr/>";
 		}
 	}
 
 	function ddbg($vars) {
 		if (C('ISDEBUG')) {
-			var_dump($vars);
-			echo "<br/>";
+			dump($vars);
+			echo "<hr/>";
 			exit;
 		}
 	}

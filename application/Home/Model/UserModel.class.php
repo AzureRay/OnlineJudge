@@ -16,7 +16,7 @@ class UserModel {
 	    return self::$_instance;
 	}
 
-	public function loginByUidPassword($userId, $password) {
+	public function isRightPassword($userId, $password) {
 		if (empty($userId) || empty($password)) {
 			return array('code' => 1002, 'msg' => '用户名和密码不能为空!');
 		}
@@ -32,17 +32,6 @@ class UserModel {
 		}
 	}
 
-	public function getLoginUserInfo() {
-		$return = array();
-		$userId = seesion('userId');
-		if (empty($userId)) {
-			return $return;
-		} else {
-			$return = $this->getUserByUid($userId);
-		}
-		return $return;
-	}
-
 	public function getUnickByUid($userId) {
 		$res = $this->getUserByUid($userId, array('nick'));
 		return $res['nick'] ?: '';
@@ -51,8 +40,8 @@ class UserModel {
 	public function getUserByUid($userId, $field = array()) {
 		$userDao = M('users');
 		$where = array(
-				'user_id' => $userId
-			);
+			'user_id' => $userId
+		);
 		$res = $userDao->field($field)->where($where)->find();
 		return $res;
 	}
@@ -64,8 +53,8 @@ class UserModel {
 		} else {
 			$userDao = M('users');
 			$where = array(
-					'user_id' => array('in', $userIds)
-				);
+				'user_id' => array('in', $userIds)
+			);
 			$return = $userDao->field($field)->where($where)->select();
 			return $return;
 		}
@@ -98,7 +87,15 @@ class UserModel {
 		return $res;
 	}
 
-	private function generatePassword($password, $md5ed = false) {
+	public function updateUserInfo($where, $option, $limit = 1) {
+		$userDao = M('users');
+		try {
+			$userDao->where($where)->data($option)->limit($limit)->save();
+		} catch (Exception $e) {
+		}
+	}
+
+	public function generatePassword($password, $md5ed = false) {
 		if ($md5ed === false) {
 			$password = md5($password);
 		}
@@ -128,7 +125,6 @@ class UserModel {
 	}
 
 	private function isOldPassword($password) {
-		dbg($password);
 		for ($i = strlen($password) - 1; $i >= 0; $i--) {
 			$c = $password[$i];
 			if ('0' <= $c && $c <= '9') continue;

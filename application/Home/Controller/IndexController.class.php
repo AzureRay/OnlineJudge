@@ -11,6 +11,7 @@ class IndexController extends TemplateController {
 	}
 
 	public function index() {
+		dbg(I('session.'));
 		echo 'xxx';
 	}
 }

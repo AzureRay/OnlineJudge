@@ -2,11 +2,11 @@
 namespace Home\Controller;
 use Think\Controller;
 use Home\Model\UserModel;
+use Home\Model\PrivilegeModel;
 
 class TemplateController extends Controller {
 
 	protected $userInfo = null;
-	protected $privileges = null;
 	protected $isNeedLogin = false;
 	protected $isNeedFilterSql = true;
 
@@ -16,20 +16,17 @@ class TemplateController extends Controller {
 		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");// HTTP/1.1
 
 		$this->initSqlInjectionFilter();
-		$this->initUserInfo();
+		$this->initLoginUserInfo();
 	}
 
-	protected function initSessionByUserId($userId) {
-		session('userId', $userId);
-		// TODO add log to loginlog and init privilege
-	}
-
-	private function initUserInfo() {
-
-		$this->userInfo = UserModel::instance()->getLoginUserInfo();
-		// TODO
-		if (empty($this->userInfo) && $this->isNeedLogin) {
-			// redirect to login page
+	private function initLoginUserInfo() {
+		$userId = session('user_id');
+		if (!empty($userId)) {
+			$field = array('user_id', 'nick');
+			$this->userInfo = UserModel::instance()->getUserByUid($userId, $field);
+		}
+		if (empty($userId) && $this->isNeedLogin) {
+			redirect(U('User/login'));
 		}
 	}
 
@@ -37,5 +34,15 @@ class TemplateController extends Controller {
 		if (function_exists('sqlInjectionFilter') && $this->isNeedFilterSql) {
 			sqlInjectionFilter();
 		}
+	}
+
+	protected function initSessionByUserId($userId) {
+		session('user_id', $userId);
+		$_privileges = PrivilegeModel::instance()->getPrivilegesByUserId($userId);
+		foreach ($_privileges as $privilege) {
+			session($privilege['rightstr'], true);
+		}
+		session('ac', array());
+		session('sub', array());
 	}
 }
