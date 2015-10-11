@@ -6,7 +6,7 @@ use Think\Controller;
 class ProblemController extends TemplateController {
 
 	public function _initialize() {
-        parent::_initialize();
+		parent::_initialize();
 	}
 
 	public function detail() {

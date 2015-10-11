@@ -20,8 +20,7 @@ class UserModel {
 		if (empty($userId) || empty($password)) {
 			return array('code' => 1002, 'msg' => '用户名和密码不能为空!');
 		}
-		$userInfo = self::getUsersByUids(array($userId), array());
-		ddbg($userInfo);
+		$userInfo = $this->getUserByUid($userId, array('password'));
 		if (empty($userInfo)) {
 			return array('code' => 1002, 'msg' => '用户名不存在!');
 		}
@@ -35,7 +34,7 @@ class UserModel {
 
 	public function getLoginUserInfo() {
 		$return = array();
-		$userId = I('session.userId', '');
+		$userId = seesion('userId');
 		if (empty($userId)) {
 			return $return;
 		} else {
@@ -70,6 +69,33 @@ class UserModel {
 			$return = $userDao->field($field)->where($where)->select();
 			return $return;
 		}
+	}
+
+	public function addUserInfo($userId, $unick, $_password, $school, $email) {
+		$ip = get_client_ip();
+		$nowstr = date('Y-m-d H:i:s');
+		$accessTime = $nowstr;
+		$registerTime = $nowstr;
+		$password = $this->generatePassword($_password);
+
+		$option = array(
+			'user_id' => $userId,
+			'nick'	  => $unick,
+			'school'  => $school,
+			'email'   => $email,
+			'ip'	  => $ip,
+			'password' => $password,
+			'reg_time' => $registerTime,
+			'accesstime' => $accessTime
+		);
+
+		$userDao = M('users');
+		try {
+			$res = $userDao->data($option)->add();
+		} catch (Exception $e) {
+			$res = 0;
+		}
+		return $res;
 	}
 
 	private function generatePassword($password, $md5ed = false) {

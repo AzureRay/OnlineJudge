@@ -14,6 +14,4 @@ class ProblemModel {
 	    }
 	    return self::$_instance;
 	}
-
-
 }

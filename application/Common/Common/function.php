@@ -11,18 +11,35 @@
 		return $value;
 	}
 
+	function isValidStringLength($str, $minLength = -1, $maxLength = -1) {
+		$len = strlen($str);
+		$isValid = true;
+		if ($minLength != -1 && $len < $minLength) {
+			$isValid = false;
+		}
+		if ($maxLength != -1 && $len > $maxLength) {
+			$isValid = false;
+		}
+		return $isValid;
+	}
 
-	function pwCheck($password,$saved) {
-			if (isOldPW($saved)){
-				$mpw = md5($password);
-				if ($mpw==$saved) return True;
-				else return False;
-			}
-			$svd=base64_decode($saved);
-			$salt=substr($svd,20);
-			$hash = base64_encode( sha1(md5($password) . $salt, true) . $salt );
-			if (strcmp($hash,$saved)==0) return True;
-			else return False;
+	function isValidEmail($str) {
+		$moder = "/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/";
+		if(preg_match($moder, $str)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function errorReturn($code, $msg = '') {
+		$return = array();
+		$return['code'] = $code;
+		$return['result'] = $msg;
+		$result = json_encode($return);
+		header('inner-size: '. strlen($result));
+		echo $result;
+		exit;
 	}
 
 	function dbg($vars) {

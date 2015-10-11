@@ -5,9 +5,10 @@ use Home\Model\UserModel;
 
 class TemplateController extends Controller {
 
-	public $userInfo = null;
-	public $isNeedLogin = false;
-	public $isNeedFilterSql = true;
+	protected $userInfo = null;
+	protected $privileges = null;
+	protected $isNeedLogin = false;
+	protected $isNeedFilterSql = true;
 
 	public function _initialize() {
 
@@ -16,6 +17,11 @@ class TemplateController extends Controller {
 
 		$this->initSqlInjectionFilter();
 		$this->initUserInfo();
+	}
+
+	protected function initSessionByUserId($userId) {
+		session('userId', $userId);
+		// TODO add log to loginlog and init privilege
 	}
 
 	private function initUserInfo() {
@@ -28,7 +34,7 @@ class TemplateController extends Controller {
 	}
 
 	private function initSqlInjectionFilter() {
-		if (function_exists('sqlInjectionFilter') && $isNeedFilterSql) {
+		if (function_exists('sqlInjectionFilter') && $this->isNeedFilterSql) {
 			sqlInjectionFilter();
 		}
 	}
