@@ -1,0 +1,77 @@
+
+
+
+.wrap{width: 1200px;margin: 10px auto;padding-left: 10px;}
+.comWidth{width: 1200px;}
+
+#header{height: 200px;}
+#header .logo img{width: 300px;height: 70px;background: url(../images/logo.jpg) 0 0 no-repeat;margin-top: 9px;margin-left: -25px;}
+#header .login_register{margin-bottom: 8px;float: right;}
+#header .nav_list{margin-top: 9px;}
+#header .nav_list li{float: left;}
+#header .nav_list li a{color: #555;padding:9px 16px;margin-right: 17px; }
+#header .nav_list li a:hover{color: #3498db;}
+#header .nav_list .hidden_nav{position: relative;}
+#header .nav_list .hidden_nav ul{position: absolute;top: 30px;left: 0px;}
+#header .nav_list .hidden_nav ul li{}
+#header .nav_list .hidden_nav ul a{width: 120px;height: 20px;display: block;}
+#header .nav_list .active{}
+
+#header .search{margin-left: 6px;}
+
+#content{position: relative;width: 800px;}
+#content .info{margin-bottom: 30px;}
+#content .title{color: #3498db;font-size: 24px;
+border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
+#content .entry{font-size: 18px;color: #000;}
+#content .entry p{text-indent: 2em;}
+#content a{color: #3498db;}
+
+#side_bar{margin-top: 50px;}
+#side_bar ul{border: 1px solid rgb(185, 185, 185);border-radius: 5px;}
+#side_bar li{padding: 5px;border-bottom:1px solid rgb(185, 185, 185);text-align: center;}
+#side_bar .classify{color: #3498db;text-align: center;}
+
+
+/*Problem页面*/
+.problem_title .title,.problem_info .title,.problem_menu_list .title,.problem_description .title,
+.problem_input .title,.problem_ouput .title,.problem_hint .title,.problem_source .title,
+.comment .title
+{margin-bottom: 15px;}
+
+.problem_title{margin-top:50px;margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #ddd;}
+.problem_title h2{font-size: 30px;color: #585f69;font-weight: normal;}
+
+.problem_info{margin-bottom: 30px;}
+.problem_info li{float: left;}
+.problem_info .head{border-bottom: 1px solid #ddd;}
+.problem_info .head li{width: 170px;padding-bottom:10px; }
+.problem_info .body li{width: 170px;padding-top: 10px;}
+
+.problem_menu_list{width: 1100px;margin-bottom: 20px; }
+.problem_menu_list ul{margin: 30px auto;text-align: center;width: 230px;}
+.problem_menu_list li{float: left;}
+.problem_menu_list a{border-radius: 5px;padding: 10px 20px;color: #555;background: #428BCA;margin-right: 10px;color: #fff;}
+.problem_menu_list a:hover{background: #eee;color: #000;}
+
+.problem_description{margin-bottom: 20px;}
+.problem_description .title{}
+.problem_input{margin-bottom: 20px;}
+
+.problem_ouput{margin-bottom: 20px;}
+
+.problem_hint{margin-bottom: 20px;}
+
+.problem_source{margin-bottom: 20px;}
+
+.comment{position: relative;height: 240px;margin-bottom: 40px;}
+.comment textarea{border-radius: 10px;outline: none;}
+.comment a{position: absolute;right: 25px;bottom: 0;
+background: #428BCA;color: #fff;padding: 6px 14px;border-radius: 3px;}
+
+.comment_list{}
+.comment_list h4{margin-bottom:5px;font-size: 12px;color: #555; }
+.comment_list li{position: relative;border-top: 1px dotted #555;padding: 10px 0 30px 10px;
+margin-bottom: 10px;}
+.comment_list p{font-size: 14px;}
+.comment_list span{font-size: 12px;position: absolute;bottom: 5px;left: 11px;}

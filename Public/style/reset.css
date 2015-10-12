@@ -1,0 +1,13 @@
+﻿body,p,ul,li,h2,h3,h4,table,td,tr{margin: 0;padding: 0;}
+body{font-family: "微软雅黑";}
+a{text-decoration: none;}
+li{list-style: none;}
+
+table{border-collapse: collapse;}
+
+.fl{float: left;}
+.fr{float: right;}
+
+/*清除浮动*/
+.clearfix:after{content: "";display: block;clear: both;}
+.clearfix{zoom:1;}
