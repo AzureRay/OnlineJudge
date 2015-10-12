@@ -6,7 +6,6 @@ use Think\Controller;
 class ProblemController extends TemplateController {
 
 	public function _initialize() {
-		self::$isNeedLogin = true;
 		parent::_initialize();
 	}
 

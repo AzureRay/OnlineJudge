@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-
-import('Home.Model.UserModel');
+use Home\Model\UserModel;
 
 class IndexController extends TemplateController {
 
@@ -14,4 +13,6 @@ class IndexController extends TemplateController {
 		dbg(I('session.'));
 		echo 'xxx';
 	}
+
+	public function
 }
