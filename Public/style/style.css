@@ -1,9 +1,10 @@
 
 
-
+/*public所有页面同一的格式*/
 .wrap{width: 1200px;margin: 10px auto;padding-left: 10px;}
 .comWidth{width: 1200px;}
 
+/*header文件*/
 #header{height: 50px;}
 #header .logo img{width: 300px;height: 70px;background: url(../images/logo.jpg) 0 0 no-repeat;margin-top: 9px;margin-left: -25px;}
 #header .login_register{margin-bottom: 8px;float: right;}
@@ -15,16 +16,19 @@
 #header .nav_list .hidden_nav ul{position: absolute;top: 30px;left: 0px;}
 #header .nav_list .hidden_nav ul li{}
 #header .nav_list .hidden_nav ul a{width: 120px;height: 20px;display: block;}
-#header .nav_list .active{}
+#header .nav_list .active{border}
+.border{height: 1px;background: red;width: 100%;margin-top: 30px;}
 
-#header .search{margin-left: 6px;}
 
-#content{position: relative;width: 800px;}
+
+/*index页面的内容*/
+#content{position: relative;width: 900px;}
 #content .info{margin-bottom: 30px;}
 #content .title{color: #3498db;font-size: 24px;
 border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 #content .entry{font-size: 18px;color: #000;}
-#content .entry p{text-indent: 2em;}
+#content .entry p{text-indent: 2em;text-align:justify;text-justify: inter-ideograph;}
+#content .entry li{}
 #content a{color: #3498db;}
 
 #side_bar{margin-top: 50px;}
@@ -33,7 +37,7 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 #side_bar .classify{color: #3498db;text-align: center;}
 
 
-/*Problem页面*/
+/*Problem_detail页面*/
 .problem_title .title,.problem_info .title,.problem_menu_list .title,.problem_description .title,
 .problem_input .title,.problem_ouput .title,.problem_hint .title,.problem_source .title,
 .comment .title
