@@ -10,7 +10,8 @@ class ProblemController extends TemplateController {
 	}
 
 	public function detail() {
-		echo 'hehe';
+		layout(true);
+		$this->display();
 	}
 
 	public function plist() {

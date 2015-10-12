@@ -10,9 +10,11 @@ class IndexController extends TemplateController {
 	}
 
 	public function index() {
-		dbg(I('session.'));
-		echo 'xxx';
+		layout(true);
+		$this->display();
 	}
 
-	public function
+	public function ranklist() {
+		echo 'ranklist action';
+	}
 }
