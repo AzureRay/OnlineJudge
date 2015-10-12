@@ -4,7 +4,7 @@
 .wrap{width: 1200px;margin: 10px auto;padding-left: 10px;}
 .comWidth{width: 1200px;}
 
-#header{height: 200px;}
+#header{height: 50px;}
 #header .logo img{width: 300px;height: 70px;background: url(../images/logo.jpg) 0 0 no-repeat;margin-top: 9px;margin-left: -25px;}
 #header .login_register{margin-bottom: 8px;float: right;}
 #header .nav_list{margin-top: 9px;}
