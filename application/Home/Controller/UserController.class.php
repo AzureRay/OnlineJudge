@@ -23,9 +23,6 @@ class UserController extends TemplateController {
 	}
 
 	public function logout() {
-
-		$ip1=get_client_ip(0, 1);//$_SERVER['REMOTE_ADDR'];
-		ddbg($ip1);
 		echo 'logout action';
 	}
 
@@ -38,9 +35,9 @@ class UserController extends TemplateController {
 				resultReturn($res['code'], array('msg' => $res['msg']));
 			} else {
 				do {
-					if (true || C('OJ_VIP_CONTEST')) {
+					if (C('OJ_VIP_CONTEST')) {
 						$isAdmin = PrivilegeModel::instance()->isAdministrator($userId);
-						if (false && $isAdmin) {
+						if ($isAdmin) {
 							break;
 						} else {
 							$today = date('Y-m-d');
@@ -51,8 +48,7 @@ class UserController extends TemplateController {
 								'time' 	  => array('egt', $today)
 							);
 							$order = array('time' => 'desc');
-							$res = LogsModel::instance()->getLog($where, 1, $order);
-							ddbg($res);
+							$res = LogsModel::instance()->getLoginlog($where, 1, $order);
 							if (!empty($res)) {
 								resultReturn(1002, array(
 									'msg' => '比赛期间请不要在不同机器上登录账号！请联系管理员!'
@@ -65,8 +61,7 @@ class UserController extends TemplateController {
 
 				$this->initSessionByUserId($userId);
 				$_password = UserModel::instance()->generatePassword($password);
-
-				// TODO add login log
+				LogsModel::instance()->add2Loginlog($userId, $_password);
 				$this->success('欢迎使用SDIBTOJ系统,加油AC吧!', U('Index/index'), 3);
 			}
 		} else {
@@ -97,9 +92,10 @@ class UserController extends TemplateController {
 		if (empty($user)) {
 			$res = $userModel->addUserInfo($userId, $unick, $password, $school, $email);
 			if ($res > 0) {
-				// TODO judge is vip contest
 				$this->initSessionByUserId($userId);
-				// TODO do login log
+				$_password = $userModel->generatePassword($password);
+				LogsModel::instance()->add2Loginlog($userId, $_password);
+				$this->success('欢迎使用SDIBTOJ系统,加油AC吧!', U('Index/index'), 3);
 			} else {
 				resultReturn(1002, array('msg' => '系统错误,注册失败!'));
 			}
@@ -142,7 +138,7 @@ class UserController extends TemplateController {
 					'password' => $password,
 				);
 				UserModel::instance()->updateUserInfo($where, $option);
-				$this->success('个人信息修改成功', U('modify'), 2);
+				$this->success('个人信息修改成功~', U('modify'), 2);
 			}
 		}
 	}

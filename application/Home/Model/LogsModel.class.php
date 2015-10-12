@@ -15,9 +15,25 @@ class LogsModel {
 	    return self::$_instance;
 	}
 
-	public function getLog($where, $limit = 1, $order) {
+	public function getLoginlog($where, $limit = 1, $order) {
 		$logDao = M('loginlog');
 		$res = $logDao->where($where)->order($order)->limit($limit)->select();
 		return $res;
+	}
+
+	public function add2Loginlog($userId, $password) {
+		$logDao = M('loginlog');
+		$now = date('Y-m-d H:i:s');
+		$ip = get_client_ip();
+		$option = array(
+			'user_id' => $userId,
+			'password' => $password,
+			'ip'	  => $ip,
+			'time'    => $now
+		);
+		try {
+			$logDao->data($option)->add();
+		} catch (Exception $e) {
+		}
 	}
 }
