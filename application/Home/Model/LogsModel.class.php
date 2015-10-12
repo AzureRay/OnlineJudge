@@ -15,7 +15,7 @@ class LogsModel {
 	    return self::$_instance;
 	}
 
-	public function getLoginlog($where, $limit = 1, $order) {
+	public function getLoginlog($where, $limit = 1, $order = array()) {
 		$logDao = M('loginlog');
 		$res = $logDao->where($where)->order($order)->limit($limit)->select();
 		return $res;
