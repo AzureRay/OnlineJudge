@@ -14,4 +14,10 @@ class ProblemModel {
 	    }
 	    return self::$_instance;
 	}
+
+	public function getProblemInfo($where, $field = array()) {
+		$problemDao = M('problem');
+		$res = $problemDao->field($field)->$where($where)->find();
+		return $res;
+	}
 }

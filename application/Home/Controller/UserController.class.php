@@ -28,8 +28,8 @@ class UserController extends TemplateController {
 
 	public function doLogin() {
 		if (empty($this->userInfo['user_id'])) {
-			$userId = I('get.userId', '', 'trim,htmlspecialchars');
-			$password = I('get.password', '', 'trim,htmlspecialchars');
+			$userId = I('post.userId', '', 'trim,htmlspecialchars');
+			$password = I('post.password', '', 'trim,htmlspecialchars');
 			$res = UserModel::instance()->isRightPassword($userId, $password);
 			if ($res['code'] != 1001) {
 				resultReturn($res['code'], array('msg' => $res['msg']));
@@ -85,7 +85,7 @@ class UserController extends TemplateController {
 			resultReturn(1002, array('msg' => '验证码错误!'));
 		}
 
-		$this->filterParam($userId, $unick, $password, $rptpassword, $school, $email);
+		$this->filterParam($userId, $unick, $password, $rptPassword, $school, $email);
 
 		$userModel = UserModel::instance();
 		$user = $userModel->getUserByUid($userId, array('user_id'));
@@ -180,7 +180,7 @@ class UserController extends TemplateController {
 		if (!isValidStringLength($email, -1, 100)) {
 			resultReturn(1002, array('msg' => '邮箱长度不符合规范!'));
 		} else {
-			if (!empty($email) && !$isValidEmail($email)) {
+			if (!empty($email) && !isValidEmail($email)) {
 				resultReturn(1002, array('msg' => '邮箱格式不符合规范!'));
 			}
 		}
