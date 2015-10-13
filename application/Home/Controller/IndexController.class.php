@@ -2,6 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 use Home\Model\UserModel;
+use Home\Model\RankModel;
 
 class IndexController extends TemplateController {
 
@@ -15,6 +16,12 @@ class IndexController extends TemplateController {
 	}
 
 	public function ranklist() {
-		echo 'ranklist action';
+	    $search=I('get.search', '', 'trim,htmlspecialchars');
+	    if(!empty($search)){
+	        $user = RankModel::instance()->getUser($search,array('user_id','nick','solved','submit'));
+	    }else {
+	        $user = RankModel::instance()->getUser('',array('user_id','nick','solved','submit'));
+	    }
+	    dbg($user);
 	}
 }
