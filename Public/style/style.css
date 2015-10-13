@@ -1,5 +1,5 @@
 ﻿
-.wrap{width: 1200px;margin: 10px auto;padding-left: 10px;}
+.wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;}
 
 .comWidth{width: 1200px;}
 
@@ -23,11 +23,11 @@
 
 /*index页面的内容*/
 #wrap_content{width: 90%;margin: 10px auto;}
-#content{position: relative;width: 70%;min-height:800px;}
+#content{position: relative;width: 75%;min-height:800px;}
 #content .info{margin-bottom: 30px;}
 #content .title{color: #3498db;font-size: 24px;
 border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
-#content .entry{font-size: 18px;color: #000;}
+#content .entry{font-size: 18px;color: #000;border-left:4px solid #B9B9B9;padding-left:1em;}
 
 #content .entry p{text-indent: 2em;text-align: justify;}
 
