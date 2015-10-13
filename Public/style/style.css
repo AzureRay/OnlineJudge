@@ -1,5 +1,5 @@
 ﻿
-.wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;}
+.wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;line-height: 1.4em;}
 
 .comWidth{width: 1200px;}
 
@@ -27,7 +27,7 @@
 #content .info{margin-bottom: 30px;}
 #content .title{color: #3498db;font-size: 24px;
 border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
-#content .entry{font-size: 18px;color: #000;border-left:4px solid #B9B9B9;padding-left:1em;}
+#content .entry{font-size: 16px;color: #000;border-left:4px solid #B9B9B9;padding-left:1em;line-height: 1.4em;}
 
 #content .entry p{text-indent: 2em;text-align: justify;}
 
@@ -40,7 +40,7 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 
 
 /*Problem模块detail页面*/
-.detail .wrap_title{margin-bottom: 20px;padding-bottom: 0px; border-bottom: 1px dotted #e4e9f0;display: block; }
+.detail .wrap_title{margin-bottom: 20px;padding-bottom: 0; border-bottom: 1px dotted #e4e9f0;display: block; }
 .detail .title{display: inline-block;border-bottom: 3px solid #3498db;font-size: 22px;font-weight: normal;padding-bottom: 5px;color: #555;}
 .detail .wrap_title p{text-align: justify;}
 
@@ -50,13 +50,13 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 .problem_info{margin-bottom: 30px;}
 .problem_info li{float: left; }
 .problem_info .head{border-bottom: 1px solid #ddd;}
-.problem_info .head li{width: 170px;padding-bottom:10px; width:25%;}
-.problem_info .body li{width: 170px;padding-top: 10px;width:25%;}
+.problem_info .head li{min-width: 170px;padding-bottom:10px; width:25%;}
+.problem_info .body li{min-width: 170px;padding-top: 10px;width:25%;}
 
 .problem_menu_list{width: 1100px;margin-bottom: 20px; }
 .problem_menu_list ul{margin: 30px auto;text-align: center;width: 230px;}
 .problem_menu_list li{float: left;}
-.problem_menu_list a{border-radius: 5px;padding: 10px 20px;color: #555;background: #428BCA;margin-right: 10px;color: #fff;}
+.problem_menu_list a{border-radius: 5px;padding: 10px 20px;background: #428BCA;margin-right: 10px;color: #fff;}
 .problem_menu_list a:hover{background: #eee;color: #000;}
 
 .problem_description{margin-bottom: 20px;}
@@ -83,7 +83,7 @@ margin-bottom: 10px;}
 
 
 /*footer底部*/
-#footer{width: 100%;background: #252525;border-top: 4px solid #555;height: 210px;padding-top: 5px;}
+#footer{width: 100%;background: #252525;border-top: 4px solid #555;height: 210px;padding-top: 5px;line-height:1em;}
 #footer .tab{position: relative;width: 100%;height: 150px;padding:10px 0;}
 #footer .tab p{color: #fff;}
 #footer .friends{position: absolute;left: 180px;width: 320px;}
@@ -94,7 +94,7 @@ margin-bottom: 10px;}
 #footer .about{position: absolute;left: 940px;width: 320px;}
 #footer .about a{padding: 10px;margin-bottom: 10px;display: block;font-size: 16px;border-bottom: 1px dashed #303030;}
 #footer .tab li{color: #fff;}
-#footer .title{font-size: 20px;margin-bottom: 5px;margin-bottom: 20px;}
+#footer .title{font-size: 20px;margin-bottom: 20px;}
 #footer .tab li a{color: #959595;font-size: 14px;padding: 5px;}
 #footer .tab li a:hover{text-decoration: underline;}
 #footer .info{margin:0 auto; color: #fff;text-align: center;height: 50px;background: #222;font-size: 12px;padding-top: 10px;}
