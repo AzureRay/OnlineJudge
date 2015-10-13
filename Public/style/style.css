@@ -1,13 +1,11 @@
 ﻿
-
-
-
-.wrap{width: 1200px;margin: 10px auto;padding-left: 10px;position: relative;}
+.wrap{width: 1200px;margin: 10px auto;padding-left: 10px;}
 
 .comWidth{width: 1200px;}
 
+
 /*header文件*/
-#header{height: 50px;}
+#header{height: 70px;}
 #header .logo img{width: 310px;height: 66px;background: url(../images/logo.jpg) 0 0 no-repeat;
 	margin:12px 32px 0 -25px;}
 #header .login_register{margin-bottom: 8px;float: right;}
@@ -15,7 +13,8 @@
 #header .nav_list li{float: left;}
 #header .nav_list li a{color: #555;padding:9px 16px;margin-left: 17px; }
 #header .nav_list li a:hover{color: #3498db;}
-#header .nav_list .hidden_nav{position: relative;}
+#header .nav_list .hidden_nav{position: relative;background: url(../images/icon/arrow.jpg) no-repeat right center;}
+#header .nav_list .hidden_nav:hover{background: url(../images/icon/arrow1.jpg) no-repeat right center;}
 #header .nav_list .hidden_nav ul{position: absolute;top: 30px;left: 0px;z-index: 2;display: none;}
 #header .nav_list .hidden_nav ul li{background: #fff;}
 #header .nav_list .hidden_nav ul a{width: 120px;height: 20px;background: #fff;display: block;}
@@ -23,7 +22,7 @@
 
 
 /*index页面的内容*/
-#content{position: relative;width: 900px;}
+#content{position: relative;width: 900px;min-height:800px;}
 #content .info{margin-bottom: 30px;}
 #content .title{color: #3498db;font-size: 24px;
 border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
@@ -36,25 +35,22 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 #side_bar{margin-top: 50px;}
 #side_bar ul{border: 1px solid rgb(185, 185, 185);border-radius: 5px;}
 #side_bar li{padding: 5px;border-bottom:1px solid rgb(185, 185, 185);text-align: center;}
-#side_bar .classify{color: #3498db;text-align: center;}
-
+#side_bar .side_bar_title{color: #3498db;text-align: center;}
 
 
 /*Problem模块detail页面*/
-
-.problem_title .title,.problem_info .title,.problem_menu_list .title,.problem_description .title,
-.problem_input .title,.problem_ouput .title,.problem_hint .title,.problem_source .title,
-.comment .title
-{margin-bottom: 15px;}
+.detail .wrap_title{margin-bottom: 20px;padding-bottom: 0px; border-bottom: 1px dotted #e4e9f0;display: block; }
+.detail .title{display: inline-block;border-bottom: 3px solid #3498db;font-size: 22px;font-weight: normal;padding-bottom: 5px;color: #555;}
+.detail .wrap_title p{text-align: justify;}
 
 .problem_title{margin-top:50px;margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #ddd;}
 .problem_title h2{font-size: 30px;color: #585f69;font-weight: normal;}
 
 .problem_info{margin-bottom: 30px;}
-.problem_info li{float: left;}
+.problem_info li{float: left; }
 .problem_info .head{border-bottom: 1px solid #ddd;}
-.problem_info .head li{width: 170px;padding-bottom:10px; }
-.problem_info .body li{width: 170px;padding-top: 10px;}
+.problem_info .head li{width: 170px;padding-bottom:10px; width:25%;}
+.problem_info .body li{width: 170px;padding-top: 10px;width:25%;}
 
 .problem_menu_list{width: 1100px;margin-bottom: 20px; }
 .problem_menu_list ul{margin: 30px auto;text-align: center;width: 230px;}
@@ -63,7 +59,7 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 .problem_menu_list a:hover{background: #eee;color: #000;}
 
 .problem_description{margin-bottom: 20px;}
-.problem_description .title{}
+.problem_description p{text-indent: 2em;}
 .problem_input{margin-bottom: 20px;}
 
 .problem_ouput{margin-bottom: 20px;}
@@ -73,7 +69,7 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 .problem_source{margin-bottom: 20px;}
 
 .comment{position: relative;height: 240px;margin-bottom: 40px;}
-.comment textarea{border-radius: 10px;outline: none;}
+.comment textarea{border-radius: 10px;outline: none;resize: none;}
 .comment a{position: absolute;right: 25px;bottom: 0;
 background: #428BCA;color: #fff;padding: 6px 14px;border-radius: 3px;}
 
@@ -86,4 +82,15 @@ margin-bottom: 10px;}
 
 
 /*footer底部*/
-#footer{width: 100%;background: #252525;border-top: 4px solid #555;height: 200px;}
+#footer{width: 100%;background: #252525;border-top: 4px solid #555;height: 200px;padding-top: 5px;}
+#footer .tab{position: relative;width: 100%;height: 140px;padding-bottom: 10px;}
+#footer .friends{position: absolute;left: 250px}
+#footer .nav{position: absolute;left: 630px;}
+#footer .about{position: absolute;left: 990px;}
+#footer .tab li{color: #fff;text-align: center;}
+#footer .title{font-size: 16px;margin-bottom: 5px;}
+#footer .tab li a{color: #fff;font-size: 14px;}
+#footer .tab li a:hover{text-decoration: underline;}
+#footer .info{margin:0 auto; color: #fff;text-align: center;height: 50px;background: #222;font-size: 12px;padding-top: 10px;}
+#footer .info a{color: #3498db;}
+#footer .info a:hover{color: #3498db;text-decoration: underline;}
