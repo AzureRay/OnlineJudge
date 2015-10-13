@@ -1,5 +1,6 @@
 <?php
 namespace Home\Model;
+use Think\Exception;
 use Think\Model;
 
 class UserModel {

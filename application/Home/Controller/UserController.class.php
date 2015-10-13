@@ -126,7 +126,7 @@ class UserController extends TemplateController {
 					$rptpassword = $password;
 				}
 
-				$this->filterParam($userId, $unick, $password, $rptpassword, $school, $email);
+				$this->filterParam($userId, $unick, $password, $rptPassword, $school, $email);
 				$password = UserModel::instance()->generatePassword($password);
 				$where = array(
 					'user_id' => $userId

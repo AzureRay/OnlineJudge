@@ -17,7 +17,7 @@ class ProblemModel {
 
 	public function getProblemInfo($where, $field = array()) {
 		$problemDao = M('problem');
-		$res = $problemDao->field($field)->$where($where)->find();
+		$res = $problemDao->field($field)->where($where)->find();
 		return $res;
 	}
 }
