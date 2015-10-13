@@ -42,7 +42,5 @@ class TemplateController extends Controller {
 		foreach ($_privileges as $privilege) {
 			session($privilege['rightstr'], true);
 		}
-		session('ac', array());
-		session('sub', array());
 	}
 }
