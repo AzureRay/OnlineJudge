@@ -108,8 +108,10 @@ class UserModel {
         if (!empty($query['defunct'])) {
             $where['defunct'] = $query['defunct'];
         }
-        $userDao->field($field)->where($where);
 
+        $total = $userDao->where($where)->count();
+
+        $userDao->field($field)->where($where);
         if (!empty($query['order'])) {
             $order = $query['order'];
             $userDao->order($order);
@@ -121,7 +123,7 @@ class UserModel {
             $userDao->page($query['page']);
         }
         $res = $userDao->select();
-        return $res;
+        return array('total' => $total, 'data' => $res);
     }
 
 	public function generatePassword($password, $md5ed = false) {
