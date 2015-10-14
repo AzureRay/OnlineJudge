@@ -25,5 +25,19 @@ $(function(){
             this.value = str;
             $(this).css('color','#A9A9A9');    
         }
-    })
+    });
+
+    //test
+
+    $("#send").click(function(){
+        var a = $('#userid').val();
+        var b = $('#password').val();
+        $.post("/OnlineJudge/index.php/Home/User/doLogin",{
+                    userId : $('#userid').val(),
+                    password : $('#password').val()
+                }, function (data, textStatus){
+                       alert(1);
+                }
+        );
+    });
 });
