@@ -1,2 +1,3 @@
 application/Runtime/*
 *.DS_Store
+.idea/*
