@@ -11,19 +11,18 @@ class UserController extends TemplateController {
 	}
 
 	public function login() {
-		echo 'login action';
+		layout(true);
+		$this->display();
 	}
 
 	public function register() {
-		echo 'register action';
+		layout(true);
+		$this->display();
 	}
 
 	public function modify() {
-		echo 'modify action';
-	}
-
-	public function logout() {
-		echo 'logout action';
+		layout(true);
+		$this->display();
 	}
 
 	public function doLogin() {
