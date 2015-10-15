@@ -17,14 +17,14 @@
             <a href=""><img src="__PUBLIC__/images/logo.jpg"/></a>
         </div>
         <div class="login_register">
-            <a href="#" class="login">Login</a>
+            <a href="{:U('Home/User/login')}" class="login">Login</a>
             <span>|</span>
-            <a href="#" class="register">Register</a>
+            <a href="{:U('Home/User/register')}" class="register">Register</a>
         </div>
         <div class="nav">
             <ul class="nav_list fl">
                 <li><a href="#">Virtual Judge</a></li>
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="{:U('/')}" class="active">Home</a></li>
                 <li class="hidden_nav">
                     <a href="#" class="arrow">F.A.Qs</a>
                     <ul>
@@ -33,11 +33,11 @@
                         <li><a href="#">Recent Contest</a></li>
                     </ul>
                 </li>
-                <li><a href="#">ProblemSet</a></li>
+                <li><a href="{:U('Home/Problem/plist')}">ProblemSet</a></li>
                 <li><a href="#">Status</a></li>
-                <li><a href="#">Ranklist</a></li>
+                <li><a href="{:U('Home/Index/ranklist')}">Ranklist</a></li>
                 <li><a href="#">Contest</a></li>
-                <li><a href="#">Exam</a></li>
+                <li><a href="{:U('Exam/Index/index')}">Exam</a></li>
             </ul>
         </div>
     </div>

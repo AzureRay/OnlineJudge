@@ -23,7 +23,7 @@ $(function(){
     $('.comment textarea').blur(function(){
         if(this.value == '') {
             this.value = str;
-            $(this).css('color','#A9A9A9');    
+            $(this).css('color','#A9A9A9');
         }
     });
 
@@ -32,12 +32,12 @@ $(function(){
     $("#send").click(function(){
         var a = $('#userid').val();
         var b = $('#password').val();
-        $.post("/OnlineJudge/index.php/Home/User/doLogin",{
+        $.post("doLogin",{
                     userId : $('#userid').val(),
                     password : $('#password').val()
                 }, function (data, textStatus){
-                       alert(1);
-                }
+                       alert(data.result.msg);
+                },'json'
         );
     });
 });
