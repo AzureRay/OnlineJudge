@@ -1,4 +1,4 @@
-﻿
+
 .wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;line-height: 1.4em;}
 
 .comWidth{width: 1200px;}
@@ -83,13 +83,16 @@ margin-bottom: 10px;}
 
 
 /*注册*/
-#register{margin: 0 auto;width: 400px;height: 400px; border: 2px solid #eee;padding: 30px;box-shadow: 0 0 5px #eee;}
-#register h2{color: #555;}
-#register .item_list{font-size: 18px;}
+#register{margin: 30px auto;width: 500px;height: 500px; border: 2px solid #eee;padding: 30px 30px 60px 30px;
+	box-shadow: 0 0 5px #eee;}
+#register h2{color: #555;text-align: center;margin-top: 20px;}
+#register .item_list{font-size: 18px;margin-top: 30px;margin-left: 10px;}
 #register .item{padding: 10px 0;}
-#register .label{width: 150px;color: #777;}
-#register .item_info{width: 200px;}
-#register_btn{}
+#register .label{width: 150px;color: #777;text-align: right;padding-right: 10px;line-height: 35px;}
+#register .item_info {width: 200px;width: 230px;height: 30px;}
+#register .item_info input{width: 230px;height:  35px;}
+#register .register_btn{margin-top: 30px;margin-left: 180px; width: 220px;height: 40px;background: #428BCA;display: block;color: #fff;}
+
 
 /*footer底部*/
 #footer{width: 100%;background: #252525;border-top: 4px solid #555;height: 210px;padding-top: 5px;line-height:1em;min-width: 1260px;}
