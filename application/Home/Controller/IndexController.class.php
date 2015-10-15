@@ -4,18 +4,19 @@ namespace Home\Controller;
 use Think\Controller;
 use Home\Model\UserModel;
 
-class IndexController extends TemplateController {
+class IndexController extends TemplateController
+{
 
-	public function _initialize() {
-		parent::_initialize();
-	}
+    public function _initialize() {
+        parent::_initialize();
+    }
 
-	public function index() {
-		layout(true);
-		$this->display();
-	}
+    public function index() {
+        layout(true);
+        $this->display();
+    }
 
-	public function ranklist() {
+    public function ranklist() {
         $page = I('get.page', 1, 'intval');
         $pageSize = 50;
         if ($page < 1) {
