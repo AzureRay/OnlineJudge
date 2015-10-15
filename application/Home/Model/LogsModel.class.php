@@ -1,6 +1,8 @@
 <?php
 namespace Home\Model;
 
+use Think\Exception;
+
 class LogsModel {
 
 	private static $_instance = null;

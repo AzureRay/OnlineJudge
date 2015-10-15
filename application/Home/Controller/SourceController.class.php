@@ -23,11 +23,13 @@ class SourceController extends TemplateController {
 		$solutionId = I('get.sid', 0, 'intval');
 		$type = SourceModel::COMPILEERROR;
 		$error = SourceModel::instance()->getErrorBySolutionId($solutionId, $type);
-	}
+	    dbg($error);
+    }
 
 	public function runtimeError() {
 		$solutionId = I('get.sid', 0, 'intval');
 		$type = SourceModel::RUNTIMEERROR;
 		$error = SourceModel::instance()->getErrorBySolutionId($solutionId, $type);
-	}
+	    dbg($error);
+    }
 }

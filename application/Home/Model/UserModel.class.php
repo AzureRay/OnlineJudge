@@ -96,6 +96,36 @@ class UserModel {
 		}
 	}
 
+    public function getUserByQuery($query, $field = array()) {
+        $where = array();
+        $userDao = M('users');
+        if (!empty($query['user_id'])) {
+            $where['user_id'] = $query['user_id'];
+        }
+        if (!empty($query['nick'])) {
+            $where['nick'] = $query['nick'];
+        }
+        if (!empty($query['defunct'])) {
+            $where['defunct'] = $query['defunct'];
+        }
+
+        $total = $userDao->where($where)->count();
+
+        $userDao->field($field)->where($where);
+        if (!empty($query['order'])) {
+            $order = $query['order'];
+            $userDao->order($order);
+        }
+        if (!empty($query['limit'])) {
+            $userDao->limit($query['limit']);
+        }
+        if (!empty($query['page'])) {
+            $userDao->page($query['page']);
+        }
+        $res = $userDao->select();
+        return array('total' => $total, 'data' => $res);
+    }
+
 	public function generatePassword($password, $md5ed = false) {
 		if ($md5ed === false) {
 			$password = md5($password);
