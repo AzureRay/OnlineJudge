@@ -8,7 +8,7 @@ use Home\Model\PrivilegeModel;
 class TemplateController extends Controller
 {
     protected $userInfo = null;
-    //protected $isNeedLogin = true;
+    protected $isNeedLogin = true;
     protected $isNeedFilterSql = false;
 
     public function _initialize() {
