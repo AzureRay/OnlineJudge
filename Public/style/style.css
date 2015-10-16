@@ -62,9 +62,7 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 .problem_description{margin-bottom: 20px;}
 .problem_description p{text-indent: 2em;}
 .problem_input{margin-bottom: 20px;}
-
 .problem_ouput{margin-bottom: 20px;}
-
 .problem_hint{margin-bottom: 20px;}
 
 .problem_source{margin-bottom: 20px;}
@@ -83,15 +81,22 @@ margin-bottom: 10px;}
 
 
 /*注册*/
-#register{margin: 30px auto;width: 500px;height: 500px; border: 2px solid #eee;padding: 30px 30px 60px 30px;
+#register h2,#login h2{color: #555;text-align: center;margin-top: 20px;}
+.item_list{font-size: 18px;margin-top: 30px;margin-left: 10px;}
+ .item{padding: 4px 0;}
+#register .label,#login .label{width: 150px;color: #777;text-align: right;padding-right: 10px;line-height: 35px;}
+.item_info {}
+.item_info input{width: 230px;height:  25px;}
+
+#register,#login{margin: 30px auto;width: 500px; border: 2px solid #eee;
 	box-shadow: 0 0 5px #eee;}
-#register h2{color: #555;text-align: center;margin-top: 20px;}
-#register .item_list{font-size: 18px;margin-top: 30px;margin-left: 10px;}
-#register .item{padding: 10px 0;}
-#register .label{width: 150px;color: #777;text-align: right;padding-right: 10px;line-height: 35px;}
-#register .item_info {width: 200px;width: 230px;height: 30px;}
-#register .item_info input{width: 230px;height:  35px;}
-#register .register_btn{margin-top: 30px;margin-left: 180px; width: 220px;height: 40px;background: #428BCA;display: block;color: #fff;}
+#register .register_btn,#login .login_btn{margin-top: 20px;margin-left: 180px; width: 180px;height: 40px;background: #428BCA;
+    display: block;color: #fff;border: none;font-size: 16px;}
+#register .register_btn span,#login .login_btn span{font-style: 24px;}
+#register .register_btn:hover,#login .login_btn:hover{background: #3071a9;}  
+
+#register{height: 460px;padding: 30px 30px 10px 30px;}
+#login{height: 230px; padding: 30px 30px 10px 30px;}
 
 
 /*footer底部*/
