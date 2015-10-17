@@ -1,0 +1,101 @@
+<div class="container exam_content">
+<h2>成绩单</h2>
+<include file='Public:sideheader' />
+<input type="hidden" name="eid" id="eid" value="{$eid}" />
+
+<table class="table table-hover table-bordered table-condensed">
+<thead>
+<tr>
+<th width=5%>Rank</th>
+<th width=7%>账号</th>
+<th width=7%>姓名</th>
+<th width=7%>选择题成绩</th>
+<th width=7%>判断题成绩</th>
+<th width=7%>填空题成绩</th>
+<th width=7%>程序题成绩</th>
+<th width=7%>总成绩</th>
+<th width=7%>试卷</th>
+<th width=7%>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class='first-tr'>
+	<form class='form-inline'>
+	<td></td>
+	<td class='form-group'><input class='form-control' type="text" id="xs_userid" name="xs_userid" placeholder="查询账号"/></td>
+	<td class='form-group'><input class='form-control' type="text" id="xs_name" name="xs_name" placeholder="查询姓名"/></td>
+	<td class='form-group'><select class='form-control' name="xs_choose" id="xs_choose">
+		<option value='0' >请选择排序方式</option>
+		<option value='1' >升序排序</option>
+		<option value='2' >降序排序</option>
+	</select></td>
+	<td class='form-group'><select class='form-control' name = "xs_judge" id="xs_judge">
+		<option value='0' >请选择排序方式</option>
+		<option value='1' >升序排序</option>
+		<option value='2' >降序排序</option>
+	</select></td>
+	<td class='form-group'><select class='form-control' name = "xs_fill" id="xs_fill">
+		<option value='0' >请选择排序方式</option>
+		<option value='1' >升序排序</option>
+		<option value='2' >降序排序</option>
+	</select></td>
+	<td class='form-group'><select class='form-control' name = "xs_program" id="xs_program">
+		<option value='0' >请选择排序方式</option>
+		<option value='1' >升序排序</option>
+		<option value='2' >降序排序</option>
+	</select></td>
+	<td class='form-group'><select class='form-control' name = "xs_score" id="xs_score">
+		<option value='0' >请选择排序方式</option>
+		<option value='1' >升序排序</option>
+		<option value='2' >降序排序</option>
+	</select></td>
+	<td colspan='2'><button type='button' class='btn btn-info' onclick="xs_search()">
+	Search</button></td>
+	</form>
+</tr>
+
+<foreach name='row'	item='r' key='k'>
+<tr>
+<td>{$k+1}</td>
+<td>{$r['user_id']}</td>
+<td>{$r['nick']}</td>
+<td>{$r['choosesum']}</td>
+<td>{$r['judgesum']}</td>
+<td>{$r['fillsum']}</td>
+<td>{$r['programsum']}</td>
+<td>{$r['score']}</td>
+<if condition="$r['score'] eq ''">
+	<if condition="isset($isonline[$r['user_id']])">
+		<if condition="time() gt $end_timeC">
+			<td><span class='label label-warning'>未交卷</span></td>
+		<else/>
+			<td><span class='label label-danger'>正在考试</span></td>
+		</if>
+	<else/>
+	<td><span class='label label-default'>未参加</span></td>
+	</if>
+<else/>
+	<td><a class='label label-info' href="{:U('Teacher/Info/showpaper',array('users'=>$r['user_id'],'eid'=>$eid))}">查看试卷>></a></td>
+</if>
+
+<if condition="$r['score'] eq ''">
+	<if condition="isset($isonline[$r['user_id']]) and time() gt $end_timeC">
+		<td><a class='label label-success' href="{:U('Teacher/Info/submitpaper',array('users'=>$r['user_id'],'eid'=>$eid))}">提交试卷>></a></td>
+	<else/>
+		<td>无</td>
+	</if>
+<else/>
+<td><a class='label label-danger' href="{:U('Teacher/Info/delscore',array('users'=>$r['user_id'],'eid'=>$eid))}" onclick="return suredo('','是否要删除该考生成绩,让考生重新参加考试？')">删除分数  X</a></td>
+</if>
+</tr>
+</foreach>
+
+</tbody>
+</table>
+</div>
+<script type="text/javascript">
+	var scoreurl = "{:U('Teacher/Exam/userscore')}";
+	$(function(){
+		$("#exam_userscore").addClass('active');
+	});
+</script>

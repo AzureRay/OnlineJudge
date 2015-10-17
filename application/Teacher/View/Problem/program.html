@@ -1,0 +1,47 @@
+<div class="container exam_content">
+<h2>添加程序题</h2>
+<include file='Public:sideheader' />
+
+<div class="alert alert-danger alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+*这里的程序题号与oj中的problem相连,请正确填写您要添加的题目所对应的Problem ID
+</div>
+
+<form class="form-horizontal" method="post" action="{:U('Teacher/Problem/addprogram')}" onSubmit="return chkexam(this)">
+	<div class="form-group">
+		<div class='col-md-7'>
+		<button class="btn btn-success" type="button" onclick="addinput()" >添加答案空</button>
+		<button class="btn btn-success" type="button" onclick="delinput()" >删除答案空</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class='control-label col-md-2'>题号:</label>
+		<div class="col-md-8" id="Content">
+		<if condition="isset($answernumC) and $answernumC gt 0">
+			<foreach name='ansrow' item='ar' key='k'>
+				<div class="col-md-4" id="divans{$k+1}">
+				<input type="text" class="form-control" 
+				name="answer{$k+1}" id="answer{$k+1}" value="{$ar['question_id']}">
+				</div>
+			</foreach>
+		</if>
+		</div>
+	</div>
+
+	<input type="hidden" name="numanswer" id="numanswer" value="{$answernumC|default=0}">
+	<input type="hidden" value="{$mykey}" name="postkey">
+	<input type="hidden" value="{$eid}" name="eid">
+
+	<div class='form-group'>
+	<div class="col-md-offset-2 col-md-8">
+	<button class="btn btn-primary col-md-6" type="submit">Submit</button>
+	<button class="btn btn-danger col-md-6" type="reset">Reset</button>
+	</div></div>
+</form>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#exam_program").addClass('active');
+});
+</script>

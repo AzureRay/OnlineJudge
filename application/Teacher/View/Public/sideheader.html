@@ -1,0 +1,13 @@
+<div style='padding-bottom:7px'>
+<ul class="nav nav-pills">
+<li id='exam_index'><a href="{:U('Teacher/Exam/index',array('eid'=>$eid))}">试卷一览</a></li>
+<li id='exam_choose'><a href="{:U('Teacher/Problem/add',array('eid'=>$eid,'type'=>1))}">选择题</a></li>
+<li id='exam_judge'><a href="{:U('Teacher/Problem/add',array('eid'=>$eid,'type'=>2))}">判断题</a></li>
+<li id='exam_fill'><a href="{:U('Teacher/Problem/add',array('eid'=>$eid,'type'=>3))}">填空题</a></li>
+<li id='exam_program'><a href="{:U('Teacher/Problem/add',array('eid'=>$eid,'type'=>4))}">程序题</a></li>
+<li id='exam_adduser'><a href="{:U('Teacher/Exam/adduser',array('eid'=>$eid))}">添加考生</a></li>
+<li id='exam_userscore'><a href="{:U('Teacher/Exam/userscore',array('eid'=>$eid))}">考生成绩</a></li>
+<li id='exam_analysis'><a href="{:U('Teacher/Exam/analysis',array('eid'=>$eid))}">考试分析</a></li>
+<li id='exam_rejudge'><a href="{:U('Teacher/Exam/rejudge',array('eid'=>$eid))}">REJUDGE</a></li>
+</ul>
+</div>

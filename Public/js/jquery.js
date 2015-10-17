@@ -34,13 +34,17 @@ $(function(){
                     userId : $('#login_userid').val(),
                     password : $('#login_password').val()
                 }, function (data, textStatus){
-                       alert(data.result.msg);
+                    if (data.code != 1001) {
+                        alert(data.result.msg);
+                    } else {
+                        location.href = data.result.msg;
+                    }
                 },'json'
         );
     });
 
     $(".register_btn").click(function(){
-        $.post("doLogin",{
+        $.post("doRegister",{
                     userId : $('#register_userid').val(),
                     nick : $('#nick').val(),
                     password : $('#register_password').val(),
@@ -49,7 +53,9 @@ $(function(){
                     email : $('#email').val(),
                     vcode : $('#vcode').val()
                 },function(data,textStatus){
+                    if(data.code != 1001) {
                         alert(data.result.msg);
+                    }
                 },'json'
         );
     });

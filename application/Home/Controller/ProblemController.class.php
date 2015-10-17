@@ -5,6 +5,7 @@ use Think\Controller;
 use Home\Model\UserModel;
 use Home\Model\ProblemModel;
 use Home\Model\ContestModel;
+use Home\Model\PrivilegeModel;
 
 class ProblemController extends TemplateController
 {

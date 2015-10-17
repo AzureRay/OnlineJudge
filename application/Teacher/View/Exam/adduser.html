@@ -1,0 +1,29 @@
+<div class="container exam_content">
+<h2>添加考生</h2>
+<include file='Public:sideheader' />
+
+<form action="{:U('Teacher/Exam/adduser')}" method='post'>
+<div class="alert alert-danger alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+将学生学号从Excel整列复制过来，然后要求他们用学号做UserID注册,就能进入该场考试,请保证在一列显示
+</div>
+<div class="form-group">
+<label for="ulist">考生账号:</label>
+<textarea class='form-control' name="ulist" rows="19" cols='19'>{$ulist|default=""}</textarea>
+</div>
+
+<input type="hidden" value="{$eid}" name="eid">
+<input type="hidden" value="{$mykey}" name='postkey'>
+
+<div class="col-md-offset-2 col-md-8">
+<button class="btn btn-primary col-md-6" type="submit">Submit</button>
+<button class="btn btn-danger col-md-6" type="reset">Reset</button>
+</div>
+</form>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#exam_adduser").addClass('active');
+});
+</script>

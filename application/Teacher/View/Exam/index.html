@@ -1,0 +1,121 @@
+<div class="container exam_content papershow" style='text-align:left'>
+<h2>试卷一览</h2>
+<include file='Public:sideheader' />
+
+<h4>一.选择题</h4>
+<foreach name='chooseans' item='cans' key='numofchoose'>
+<div class="panel panel-default">
+	<div class="panel-heading"><font color='red'>({$allscore['choosescore']} 分)</font>{$numofchoose+1}.{$cans['question']|nl2br}</div>
+	<div class="panel-body">
+		<p>(A) {$cans['ams']}<br/>(B) {$cans['bms']}<br/>(C) {$cans['cms']}<br/>(D) {$cans['dms']}</p>
+		<p><strong>正确答案:{$cans['answer']}</strong></p>
+	</div>
+	<div class="panel-footer"><a href="javascript:void(0);" onclick="deltoexam(this,{$eid},{$cans['choose_id']},1)">[去除该题]</a></div>
+</div>
+</foreach>
+
+<h4>二.判断题</h4>
+<foreach name='judgeans' item='jans' key='numofjudge'>
+	<div class="panel panel-default">
+		<div class="panel-heading"><font color='red'>({$allscore['judgescore']} 分)</font>{$numofjudge+1}.{$jans['question']|nl2br}</div>
+		<div class="panel-body"><strong>正确答案:{$jans['answer']}</strong></div>
+		<div class="panel-footer"><a href="javascript:void(0);" onclick="deltoexam(this,{$eid},{$jans['judge_id']},2)">[去除该题]</a></div>
+	</div>
+</foreach>
+
+<h4>三.填空题</h4>
+<foreach name='fillans' item='fans' key='numoffill'>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<if condition="$fans['kind'] eq 1">
+				<font color='red'>({$allscore['fillscore']*$fans['answernum']} 分)</font>
+				<php>$fillnum+=$fans['answernum'];</php>
+			<elseif condition="$fans['kind'] eq 2" />
+				<font color='red'>({$allscore['prgans']} 分)</font>
+				<php>$prgansnum+=1;</php>
+			<else/>
+				<font color='red'>({$allscore['prgfill']} 分)</font>
+				<php>$prgfillnum+=1;</php>
+			</if>
+		{$numoffill+1}.{$fans['question']|nl2br}</div>
+		<div class="panel-body">
+			<foreach name="fillans2[$fans['fill_id']]" item='tmprow' key='k'>
+				<if condition='$k eq 0'>
+					<strong>正确答案:</strong>
+				</if>
+				<strong>答案({$tmprow['answer_id']}) {$tmprow['answer']|default=''}    </strong>
+			</foreach>
+		</div>
+		<div class="panel-footer"><a href="javascript:void(0);" onclick="deltoexam(this,{$eid},{$fans['fill_id']},3)">[去除该题]</a></div>
+	</div>
+</foreach>
+
+<h4>四.程序设计题</h4>
+<foreach name='programans' item='pans' key='numofprogram'>
+	<div class="panel panel-default">
+		<div class="panel-heading"><font color='red'>({$allscore['programscore']} 分)</font>
+		{$numofprogram+1}.{$pans['title']|nl2br}</div>
+		<div class="panel-body">
+			<h4>Description</h4>
+			<p>{$pans['description']|nl2br}</p>
+		</div>
+	</div>
+</foreach>
+
+<table border='1' style='position:fixed;right:0px;top:70px;'>
+<thread>
+	<th>题型</th><th>每题(空)分数</th><th>题(空)数</th><th>总分</th>
+</thread>
+<tbody>
+	<tr>
+		<td>选择题</td>
+		<td>{$allscore['choosescore']}</td>
+		<td>{$choosenum}道</td>
+		<td>{$allscore['choosescore']*$choosenum}分</td>
+	</tr>
+	<tr>
+		<td>判断题</td>
+		<td>{$allscore['judgescore']}</td>
+		<td>{$judgenum}道</td>
+		<td>{$allscore['judgescore']*$judgenum}分</td>
+	</tr>
+	<tr>
+		<td>基础填空题</td>
+		<td>{$allscore['fillscore']}</td>
+		<td>{$fillnum}空</td>
+		<td>{$allscore['fillscore']*$fillnum}分</td>
+	</tr>
+	<tr>
+		<td>写运行结果</td>
+		<td>{$allscore['prgans']}</td>
+		<td>{$prgansnum}道</td>
+		<td>{$allscore['prgans']*$prgansnum}分</td>
+	</tr>
+	<tr>
+		<td>程序填空题</td>
+		<td>{$allscore['prgfill']}</td>
+		<td>{$prgfillnum}道</td>
+		<td>{$allscore['prgfill']*$prgfillnum}分</td>
+	</tr>
+	<tr>
+		<td>程序设计题</td>
+		<td>{$allscore['programscore']|default=0}</td>
+		<td>{$programnum}道</td>
+		<td>{$allscore['programscore']*$programnum}分</td>
+	</tr>
+	<tr>
+		<td>总计</td>
+		<td>-----</td>
+		<td>-----</td>
+		<td>{$allscore['choosescore']*$choosenum+$allscore['judgescore']*$judgenum+$allscore['fillscore']*$fillnum+$allscore['prgans']*$prgansnum+$allscore['prgfill']*$prgfillnum+$allscore['programscore']*$programnum}分</td>
+	</tr>
+</tbody>
+</table>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#exam_index").addClass('active');
+});
+var deltoexamurl = "{:U('Teacher/Problem/delpte')}";
+</script>

@@ -1,0 +1,97 @@
+<div class="exam_content container">
+	<if condition="isset($row['judge_id'])">
+		<h1>编辑判断题</h1>
+	<else/>
+		<h1>添加判断题</h1>
+	</if>
+	<hr>
+	<form class='form-horizontal' method="post" action="{:U('Teacher/Add/judge')}" onSubmit="return chkjudge(this)">
+		<div class="form-group">
+		  <label for="judge_des" class="control-label col-md-2">题目描述:</label>
+		  <div class="col-md-8">
+		  	<textarea id='judge_des' name="judge_des" class="form-control" rows="8">{$row['question']|default=""}</textarea>
+		  </div>
+		</div>
+		<div class="form-group">
+			<label class='col-md-2 control-label'>答案：</label>
+			<div class='col-md-7'>
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'Y'">
+			  <input type="radio" name="answer" value="Y" checked> Yes
+			<else/>
+			  <input type="radio" name="answer" value="Y"> Yes
+			</if>
+			</label>
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'N'">
+			  <input type="radio" name="answer" value="N" checked> No
+			<else/>
+			  <input type="radio" name="answer" value="N"> No
+			</if>
+			</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="point" class='col-md-2 control-label'>知识点:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="point" id="point">
+				<foreach name='pnt' item='p'>
+					<if condition="isset($row['point']) and $row['point'] eq $p['point']">
+					<option value="{$p['point']}" selected>{$p['point']}</option>
+					<else/>
+					<option value="{$p['point']}">{$p['point']}</option>
+					</if>
+				</foreach>
+			</select>
+			</div>
+			<label class='col-md-1 control-label' for="easycount">难度系数:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="easycount" id="easycount">
+				<for start='0' end='11'>
+					<if condition="isset($row['easycount']) and $row['easycount'] eq $i">
+						<option value="{$i}" selected>{$i}</option>
+					<else/>
+						<option value="{$i}">{$i}</option>					
+					</if>
+				</for>
+			</select>
+			</div>
+			<label class='col-md-1 control-label' for="isprivate">题库类型:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="isprivate" id="isprivate" onchange="showmsg()">
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 0">
+					<option value="0" selected>公共题库</option>
+				<else/>
+					<option value="0">公共题库</option>
+				</if>
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 1">
+					<option value="1" selected>私人题库</option>
+				<else/>
+					<option value="1">私人题库</option>
+				</if>
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 2">
+					<option value="2" selected>系统隐藏</option>
+				<else/>
+					<option value="2">系统隐藏</option>
+				</if>
+			</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="alert alert-warning" role="alert" id='msg' style="display:none"></div>
+		</div>
+		<if condition="isset($row['judge_id'])">
+			<input type="hidden" name="judgeid" value="{$row['judge_id']}">
+		</if>
+		<input type="hidden" name="page" value="{$page}">
+		<input type='hidden' name="postkey" value="{$mykey}">
+		<div class="col-md-offset-2 col-md-8">
+			<button class="btn btn-primary col-md-6" type="submit">Submit</button>
+			<if condition="isset($row['judge_id'])">
+				<button class="btn btn-danger col-md-6" type="button" onclick="javascript:history.go(-1);">Back</button>
+			<else/>
+				<button class="btn btn-danger col-md-6" type="reset">Reset</button>
+			</if>
+		</div>
+	</form>
+</div>

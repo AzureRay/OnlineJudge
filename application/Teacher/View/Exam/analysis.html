@@ -1,0 +1,76 @@
+<div class="container exam_content">
+<h2>考试分析</h2>
+<include file='Public:sideheader' />
+
+<form class='form-inline'>
+<input type="hidden" name="eid" value="{$eid}">
+<div class="form-group">
+	<input type="text" class="form-control input-lg search-input" id="student" name='student' value="{$student}" placeholder="查询专业或学生关键词如jk">
+</div>
+<button type="submit" class="btn btn-default btn-lg">Search</button>
+</form>
+<table class="table-bordered table table-bordered">
+	<tr><td colspan=2><strong>考试编号:{$eid}</strong></td>
+		<td colspan=2><strong>应考人数:{$totalnum}</strong></td>
+		<td colspan=2><strong>实考人数:{$row['realnum']}</strong></td>
+	</tr>
+	<tr><td colspan=6><h3>各部分得分</h3></td></tr>
+	<tr>
+		<td>题型</td>
+		<td>选择题</td>
+		<td>判断题</td>
+		<td>填空题</td>
+		<td>程序设计题</td>
+		<td>总分</td>
+	</tr>
+	<tr>
+		<td>最高分</td>
+		<td>{$row['choosemax']}</td>
+		<td>{$row['judgemax']}</td>
+		<td>{$row['fillmax']}</td>
+		<td>{$row['programmax']}</td>
+		<td>{$row['scoremax']}</td>
+	</tr>
+	<tr>
+		<td>最低分</td>
+		<td>{$row['choosemin']}</td>
+		<td>{$row['judgemin']}</td>
+		<td>{$row['fillmin']}</td>
+		<td>{$row['programmin']}</td>
+		<td>{$row['scoremin']}</td>
+	</tr>
+	<tr>
+		<td>平均分</td>
+		<td>{$row['chooseavg']}</td>
+		<td>{$row['judgeavg']}</td>
+		<td>{$row['fillavg']}</td>
+		<td>{$row['programavg']}</td>
+		<td>{$row['scoreavg']}</td>
+	</tr>
+</table>
+<table class="table-bordered table table-bordered">
+	<tr><td colspan=6><h3>各分数段人数</h3></td></tr>
+	<tr>
+		<td>分数段</td>
+		<td>60以下</td>
+		<td>60~69</td>
+		<td>70~79</td>
+		<td>80~89</td>
+		<td>90及以上</td>
+	</tr>
+	<tr>
+		<td>人数</td>
+		<td>{$fd[0]}</td>
+		<td>{$fd[1]}</td>
+		<td>{$fd[2]}</td>
+		<td>{$fd[3]}</td>
+		<td>{$fd[4]}</td>
+	</tr>
+</table>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#exam_analysis").addClass('active');
+});
+</script>

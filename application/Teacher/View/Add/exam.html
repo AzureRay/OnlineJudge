@@ -1,0 +1,156 @@
+<div class="container exam_content">
+	<if condition="isset($row['exam_id'])">
+		<h1>编辑考试</h1>
+	<else/>
+		<h1>添加考试</h1>
+	</if>
+
+	<hr>
+	<form class="form-horizontal" action="{:U('Teacher/Add/exam')}" method="post" onSubmit="return chkexam(this)">
+
+	<div class="form-group">
+	  <label for="examname" class="control-label col-md-3">考试名称:</label>
+	  <div class="col-md-6">
+	  <input type="text" id='examname' name="examname" class="form-control" value="{$row['title']|default=''|htmlspecialchars}">
+	  </div>
+	</div>
+	<if condition="isset($row['start_time'])">
+		<div class="form-group">
+		  <label class="control-label col-md-3">考试开始时间:</label>
+		  <div class="col-md-1">
+		  <input type="text" name="syear" class="form-control" value="{$row['start_time']|substr=0,4}">年-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="smonth" class="form-control" value="{$row['start_time']|substr=5,2}">月-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="sday" class="form-control" value="{$row['start_time']|substr=8,2}">日-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="shour" class="form-control" value="{$row['start_time']|substr=11,2}">时-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="sminute" class="form-control" value="{$row['start_time']|substr=14,2}">分</div>
+		</div>
+	<else/>	
+		<div class="form-group">
+		  <label class="control-label col-md-3">考试开始时间:</label>
+		  <div class="col-md-1">
+		  <input type="text" name="syear" class="form-control" value="{:date('Y')}">年-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="smonth" class="form-control" value="{:date('m')}">月-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="sday" class="form-control" value="{:date('d')}">日-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="shour" class="form-control" value="{:date('H')}">时-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="sminute" class="form-control" value="00">分</div>
+		</div>
+	</if>
+	
+
+	<if condition="isset($row['end_time'])">
+		<div class="form-group">
+		  <label class="control-label col-md-3">考试结束时间:</label>
+		  <div class="col-md-1">
+		  <input type="text" name="eyear" class="form-control" value="{$row['end_time']|substr=0,4}">年-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="emonth" class="form-control" value="{$row['end_time']|substr=5,2}">月-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="eday" class="form-control" value="{$row['end_time']|substr=8,2}">日-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="ehour" class="form-control" value="{$row['end_time']|substr=11,2}">时-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="eminute" class="form-control" value="{$row['end_time']|substr=14,2}">分</div>
+		</div>
+	<else/>
+		<div class="form-group">
+		  <label class="control-label col-md-3">考试结束时间:</label>
+		  <div class="col-md-1">
+		  <input type="text" name="eyear" class="form-control" value="{:date('Y')}">年-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="emonth" class="form-control" value="{:date('m')}">月-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="eday" class="form-control" value="{:date('d')+(date('H')+2>23?1:0)}">日-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="ehour" class="form-control" value="{:(date('H')+2)%24}">时-</div>
+		  <div class="col-md-1">
+		  <input type="text" name="eminute" class="form-control" value="00">分</div>
+		</div>
+	</if>
+	
+
+	<span class='label label-warning'>*以下数值只支持整数</span>
+	
+	<div class="form-group">
+	  <label for="xzfs" class="control-label col-md-3">1.选择题每题分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='xzfs' name="xzfs" class="form-control" value="{$row['choosescore']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="pdfs" class="control-label col-md-3">2.判断题每题分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='pdfs' name="pdfs" class="form-control" value="{$row['judgescore']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="tkfs" class="control-label col-md-3">3.基础填空题每空分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='tkfs' name="tkfs" class="form-control" value="{$row['fillscore']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="yxjgfs" class="control-label col-md-3">4.写运行结果题每题分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='yxjgfs' name="yxjgfs" class="form-control" value="{$row['prgans']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="cxtkfs" class="control-label col-md-3">5.程序填空题每题分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='cxtkfs' name="cxtkfs" class="form-control" value="{$row['prgfill']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="cxfs" class="control-label col-md-3">6.程序设计题每题分值:</label>
+	   <div class="col-md-6">
+	  	<input type="text" id='cxfs' name="cxfs" class="form-control" value="{$row['programscore']|default=''}">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label for="cxfs" class="control-label col-md-3">是否限定一个账号只能在一台机器登陆:</label>
+	   <div class="col-md-6">
+	  	<select name="isvip" class="form-control">
+	  		<if condition="isset($row['isvip']) and $row['isvip'] eq 'Y'">
+	  			<option value="Y" selected>Yes</option>
+	  		<else/>
+	  			<option value="Y">Yes</option>
+	  		</if>
+			<if condition="isset($row['isvip']) and $row['isvip'] eq 'N'">
+	  			<option value="N" selected>No</option>
+	  		<else/>
+	  			<option value="N">No</option>
+	  		</if>
+		</select>
+	  </div>
+	</div>
+
+	<input type='hidden' name="postkey" value="{$mykey}">
+	<input type='hidden' name='page' value="{$page}">
+	<if condition="isset($row['exam_id'])">
+		<input type="hidden" name="examid" value="{$row['exam_id']}">
+	</if>
+
+	<div class="col-md-offset-3 col-md-6">
+		<button class="btn btn-primary col-md-6" type="submit">Submit</button>
+		<if condition="isset($row['exam_id'])">
+			<button class="btn btn-danger col-md-6" type="button" onclick="javascript:history.go(-1);">Back</button>
+		<else/>
+			<button class="btn btn-danger col-md-6" type="reset">Reset</button>
+		</if>
+	</div>
+	</form>
+</div>

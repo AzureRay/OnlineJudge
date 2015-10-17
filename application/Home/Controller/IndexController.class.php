@@ -16,6 +16,11 @@ class IndexController extends TemplateController
         $this->display();
     }
 
+    public function faqs() {
+        layout(true);
+        $this->display();
+    }
+
     public function ranklist() {
         $page = I('get.page', 1, 'intval');
         $pageSize = 50;
@@ -37,7 +42,9 @@ class IndexController extends TemplateController
         $query['order'] = array('solved' => 'desc', 'submit');
         $field = array('user_id', 'nick', 'solved', 'submit');
         $users = UserModel::instance()->getUserByQuery($query, $field);
-        dbg($users);
+        layout(true);
+        $this->assign('ranklists', $users);
+        $this->display();
     }
 
     public function mail() {

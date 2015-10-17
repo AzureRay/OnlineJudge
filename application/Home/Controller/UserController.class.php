@@ -26,6 +26,10 @@ class UserController extends TemplateController
         $this->display();
     }
 
+    public function info() {
+
+    }
+
     public function doLogin() {
         if (empty($this->userInfo['user_id'])) {
             $userId = I('post.userId', '', 'trim,htmlspecialchars');
@@ -57,7 +61,7 @@ class UserController extends TemplateController
                 $this->initSessionByUserId($userId);
                 $_password = UserModel::instance()->generatePassword($password);
                 LogsModel::instance()->add2Loginlog($userId, $_password);
-                $this->success('欢迎使用SDIBTOJ系统,加油AC吧!', U('Index/index'), 3);
+                resultReturn(1001, array('msg' => U('Home/Problem/plist')));
             }
         }
         else {
@@ -66,6 +70,9 @@ class UserController extends TemplateController
     }
 
     public function doRegister() {
+        if (!empty($this->userInfo)) {
+            resultReturn(1002, array('msg' => '请先退出账号!'));
+        }
         $userId = I('post.userId', '');
         $unick = I('post.nick', '');
         $password = I('post.password', '');
@@ -91,7 +98,7 @@ class UserController extends TemplateController
                 $this->initSessionByUserId($userId);
                 $_password = $userModel->generatePassword($password);
                 LogsModel::instance()->add2Loginlog($userId, $_password);
-                $this->success('欢迎使用SDIBTOJ系统,加油AC吧!', U('Index/index'), 3);
+                resultReturn(1001, array('msg' => U('/')));
             }
             else {
                 resultReturn(1002, array('msg' => '系统错误,注册失败!'));
@@ -124,7 +131,7 @@ class UserController extends TemplateController
                     $password = $npassword;
                 }
                 else {
-                    $rptpassword = $password;
+                    $rptPassword = $password;
                 }
 
                 $this->filterParam($userId, $unick, $password, $rptPassword, $school, $email);

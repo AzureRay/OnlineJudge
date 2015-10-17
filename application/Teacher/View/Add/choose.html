@@ -1,0 +1,135 @@
+<div class="exam_content container">
+	<if condition="isset($row['choose_id'])">
+		<h1>编辑选择题</h1>
+	<else/>
+		<h1>添加选择题</h1>
+	</if>
+	
+	<hr>
+	<form class='form-horizontal' method="post" action="{:U('Teacher/Add/choose')}" onSubmit="return chkchoose(this)">
+		<div class="form-group">
+		  <label for="choose_des" class="control-label col-md-2">题目描述:</label>
+		  <div class="col-md-8">
+		  <textarea id='choose_des' name="choose_des" class="form-control" rows="6">{$row['question']|default=""}</textarea></div>
+		</div>
+		<div class="form-group">
+			<label for="ams" class="col-md-2 control-label">选项A:</label>
+			<div class="col-md-3">
+				<textarea name="ams" id="ams" class="form-control" rows="2" >{$row['ams']|default=""}</textarea>
+			</div>
+			<label for="bms" class="col-md-2 control-label">选项B:</label>
+			<div class="col-md-3">
+				<textarea name="bms" id="bms" class="form-control" rows="2" >{$row['bms']|default=""}</textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="cms" class="col-md-2 control-label">选项C:</label>
+			<div class="col-md-3">
+				<textarea name="cms" id="cms" class="form-control" rows="2" >{$row['cms']|default=""}</textarea>
+			</div>
+			<label for="dms" class="col-md-2 control-label">选项D:</label>
+			<div class="col-md-3">
+				<textarea name="dms" id="dms" class="form-control" rows="2" >{$row['dms']|default=""}</textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class='col-md-2 control-label'>答案：</label>
+			<div class='col-md-7'>
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'A'">
+			<input type="radio" name="answer" value="A" checked> A
+			<else/>
+			<input type="radio" name="answer" value="A"> A
+			</if>
+			</label>
+
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'B'">
+			<input type="radio" name="answer" value="B" checked> B
+			<else/>
+			<input type="radio" name="answer" value="B"> B
+			</if>
+			</label>
+
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'C'">
+			<input type="radio" name="answer" value="C" checked> C
+			<else/>
+			<input type="radio" name="answer" value="C"> C
+			</if>
+			</label>
+
+			<label class="radio-inline">
+			<if condition="isset($row['answer']) and $row['answer'] eq 'D'">
+			<input type="radio" name="answer" value="D" checked> D
+			<else/>
+			<input type="radio" name="answer" value="D"> D
+			</if>
+			</label>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="point" class='col-md-2 control-label'>知识点:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="point" id="point">
+				<foreach name='pnt' item='p'>
+					<if condition="isset($row['point']) and $row['point'] eq $p['point']">
+					<option value="{$p['point']}" selected>{$p['point']}</option>
+					<else/>
+					<option value="{$p['point']}">{$p['point']}</option>
+					</if>
+				</foreach>
+			</select>
+			</div>
+			<label class='col-md-1 control-label' for="easycount">难度系数:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="easycount" id="easycount">
+				<for start='0' end='11'>
+					<if condition="isset($row['easycount']) and $row['easycount'] eq $i">
+						<option value="{$i}" selected>{$i}</option>
+					<else/>
+						<option value="{$i}">{$i}</option>					
+					</if>
+				</for>
+			</select>
+			</div>
+			<label class='col-md-1 control-label' for="isprivate">题库类型:</label>
+			<div class="col-md-2">
+			<select class='form-control' name="isprivate" id="isprivate" onchange="showmsg()">
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 0">
+					<option value="0" selected>公共题库</option>
+				<else/>
+					<option value="0">公共题库</option>
+				</if>
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 1">
+					<option value="1" selected>私人题库</option>
+				<else/>
+					<option value="1">私人题库</option>
+				</if>
+				<if condition="isset($row['isprivate']) and $row['isprivate'] eq 2">
+					<option value="2" selected>系统隐藏</option>
+				<else/>
+					<option value="2">系统隐藏</option>
+				</if>
+			</select>
+			</div>
+		</div>
+		<input type='hidden' name="postkey" value="{$mykey}">
+		<input type='hidden' name='page' value="{$page}">
+		<if condition="isset($row['choose_id'])">
+			<input type="hidden" name="chooseid" value="{$row['choose_id']}">
+		</if>
+		<div class="form-group">
+			<div class="alert alert-warning" role="alert" id='msg' style="display:none"></div>
+		</div>
+		<div class="col-md-offset-2 col-md-8">
+			<button class="btn btn-primary col-md-6" type="submit">Submit</button>
+			<if condition="isset($row['choose_id'])">
+				<button class="btn btn-danger col-md-6" type="button" onclick="javascript:history.go(-1);">Back</button>
+			<else/>
+				<button class="btn btn-danger col-md-6" type="reset">Reset</button>
+			</if>
+		</div>
+	</form>
+</div>

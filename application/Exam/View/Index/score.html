@@ -1,0 +1,61 @@
+<div class="container exam_content" style='text-align:left'>
+    <table id="userinfo" class="table">
+        <tbody>
+        <tr>
+            <td rowspan="5" style="background:url(__PUBLIC__/image/pic_bg.png) no-repeat;width:152px;
+			height:140px;" align=center>
+                <img src="__PUBLIC__/image/person.gif" height="120px" width="135px" border="0px">
+            </td>
+        </tr>
+        <tr>
+            <td>账号:</td>
+            <td>{$Think.session.user_id}</td>
+        </tr>
+        <tr>
+            <td>昵称:</td>
+            <td>{$row['nick']}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{$row['email']|default='未填'}</td>
+        </tr>
+        <tr>
+            <td>注册时间:</td>
+            <td>{$row['reg_time']}</td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table-hover table table-bordered">
+        <thread>
+            <th colspan="7" style="background:url(__PUBLIC__/image/titlebar.png)" width="100%" height="36px">
+                <span style="COLOR:#CCC;font-weight:bold;">您参加的考试</span>
+            </th>
+        </thread>
+        <if condition="isset($score[0])">
+            <tr>
+                <td>序号</td>
+                <td>考试名称</td>
+                <td>选择题得分</td>
+                <td>判断题得分</td>
+                <td>填空题得分</td>
+                <td>程序设计题得分</td>
+                <td>总分</td>
+            </tr>
+            <foreach name='score' item='sc' key='k'>
+                <tr>
+                    <td>{$k+1}</td>
+                    <td>{$sc['title']}</td>
+                    <td>{$sc['choosesum']}</td>
+                    <td>{$sc['judgesum']}</td>
+                    <td>{$sc['fillsum']}</td>
+                    <td>{$sc['programsum']}</td>
+                    <td>{$sc['score']}</td>
+                </tr>
+            </foreach>
+            <else/>
+            <tr>
+                <td>您未参加过任何考试</td>
+            </tr>
+        </if>
+    </table>
+</div>

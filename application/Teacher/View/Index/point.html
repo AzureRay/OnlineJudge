@@ -1,0 +1,30 @@
+<div class="container exam_content" >
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	目前题目的知识点还不支持添加多个，以及批量删除等～^_^先看看帮忙测试一下其他功能吧
+	</div>
+	<div class="row">
+	<div class="col-md-1">
+	<button class='btn btn-info' id='candry' onclick="candry()">点击可以拖动</button>
+	<button class="btn btn-info" id='okdry' onclick="okdry()" style="display:none">确认拖动修改</button>
+	</div>
+	  <div class="col-md-offset-2 col-md-6">
+	    <div class="input-group">
+	      <input type="text" id="pointtext" class="form-control" placeholder="输入知识点">
+	      <span class="input-group-btn">
+	        <button class="btn btn-info" type="button" onclick="addpoint()">添加知识点</button>
+	      </span>
+	    </div>
+	  </div>
+	</div>
+	<div id="sortable">
+		<foreach name='pnt' key='k' item='p'>
+			<li class="ui-state-default" id="point{$p['point_id']}">{$p['point']}<button class='close' onclick="delpoint({$p['point_id']})"><span>&times;</span></button></li>
+		</foreach>
+	</div>
+</div>
+<js file="__PUBLIC__/Js/jquery-ui.min.js" />
+<script>
+	var ajaxurl = "{:U('Teacher/Add/point')}";
+	var dosorturl = "{:U('Teacher/Index/dosort')}";
+</script>

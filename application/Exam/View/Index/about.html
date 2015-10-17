@@ -1,0 +1,44 @@
+<div class="container exam_content" style='text-align:left'>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>考试名称:{$row['title']}</h2>
+
+            <p>
+                <small>Start Time:{$row['start_time']} End Time:{$row['end_time']}</small>
+            </p>
+        </div>
+        <div class="panel-body">
+            <h3>考生信息:</h3>
+
+            <p>姓名: {$name}
+
+            <p>账号: {$Think.session.user_id}</p>
+
+            <h3>考生须知:</h3>
+            <ol>
+                <li>请认真检查左侧个人真实信息,关系最后考试成绩,姓名为个人真实姓名,
+                    <br>账号格式为专业缩写+学号后八位,如jk11171101.
+                </li>
+                <li>请各位将手机关闭，考试期间手机响按作弊处理.</li>
+                <li>考场内凡交头接耳、抄袭、打手势或大声喧哗的按作弊处理.</li>
+                <li>考试过程中，一旦提交试卷，将显示得分，并且考试结束，请谨慎选择.<br>
+                    考试时间到，未提交试卷的，考试系统将自动提交试卷.
+                </li>
+                <li>采取各种方式抄录试题的按照严重作弊取理.</li>
+                <li>请及时保存答案,防止特殊情况发生答案丢失.刷新界面前,请先保存答案</li>
+            </ol>
+        </div>
+        <div class="panel-footer pull-right">
+            <if condition="$isruning eq 0">
+                <button class='btn btn-success' disabled>考试已结束</button>
+                <elseif condition="$isruning eq 1"/>
+                <a class='btn btn-danger' href="{:U('Exam/Exam/showquestion',array('eid'=>$_GET['eid']))}">开始考试</a>
+                <else/>
+                <button class='btn btn-info' disabled>考试未进行</button>
+            </if>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>

@@ -15,7 +15,7 @@ class TemplateController extends Controller
 
         header("Pragma: no-cache");
          // HTTP/1.0
-        header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+        //header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
          // HTTP/1.1
 
         $this->initSqlInjectionFilter();

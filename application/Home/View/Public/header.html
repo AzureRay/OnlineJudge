@@ -17,16 +17,25 @@
             <a href=""><img src="__PUBLIC__/images/logo.jpg"/></a>
         </div>
         <div class="login_register">
-            <a href="{:U('Home/User/login')}" class="login">Login</a>
-            <span>|</span>
-            <a href="{:U('Home/User/register')}" class="register">Register</a>
+            <if condition="session('user_id')">
+                <a href="{:U('Home/User/info')}" class="login">欢迎您 : {$Think.session.user_id}</a>
+                <span>|</span>
+                <a href="{:U('Home/User/modify')}" class="login">Modify</a>
+                <span>|</span>
+                <a href="{:U('Home/User/doLogout')}" class="login">Logout</a>
+                <else />
+                <a href="{:U('Home/User/login')}" class="login">Login</a>
+                <span>|</span>
+                <a href="{:U('Home/User/register')}" class="register">Register</a>
+            </if>
+
         </div>
         <div class="nav">
             <ul class="nav_list fl">
                 <li><a href="#">Virtual Judge</a></li>
                 <li><a href="{:U('/')}" class="active">Home</a></li>
                 <li class="hidden_nav">
-                    <a href="#" class="arrow">F.A.Qs</a>
+                    <a href="{:U('Home/Index/faqs')}" class="arrow">F.A.Qs</a>
                     <ul>
                         <li><a href="#">Discuss</a></li>
                         <li><a href="#">Introduce</a></li>

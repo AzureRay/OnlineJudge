@@ -1,0 +1,49 @@
+<div class="container exam_content">
+	<form class='form-inline'>
+	<input type="hidden" name="page" value="{$mypage['page']}" >
+	<div class="form-group">
+		<input type="text" class="form-control input-lg search-input" id="search" name='search' value="{$search}" placeholder="查询创建者或考试名称">
+	</div>
+	<button type="submit" class="btn btn-default btn-lg">Search</button>
+	</form>
+	<div class='row'>
+		<div class="col-md-2"><h1>考试总览</h1></div>
+		<div class='col-md-2 col-md-offset-8'>
+			<h1><a href="{:U('Teacher/Add/exam')}" class='btn btn-info'>添加考试</a></h1>
+		</div>
+	</div>
+	<table class="table table-hover table-bordered table-condensed">
+		<thread>
+			<th width=5%>考试ID</th>
+			<th width=30%>考试名称</th>
+			<th width=12%>开始时间</th>
+			<th width=12%>结束时间</th>
+			<th width=8%>状态</th>
+			<th width=8%>创建者</th>
+			<th width=10% colspan="2">操作</th>
+		</thread>
+		<tbody>
+			<foreach name='row' item='r'>
+				<tr>
+					<td>{$r['exam_id']}</td>
+					<td><a href="{:U('Teacher/Exam/userscore',array('eid'=>$r['exam_id']))}">{$r['title']|htmlspecialchars}</a></td>
+					<td>{$r['start_time']}</td>
+					<td>{$r['end_time']}</td>
+					<if condition="time() gt strtotime($r['end_time'])">
+			  		<td><label class='label label-success'>Ended</font></td>
+					<else/>
+					  <if condition="time() lt strtotime($r['start_time'])">
+						<td><label class='label label-info'>Pending</font></td>
+					  <else/>
+						<td><label class='label label-danger'>Running</font></td>
+					  </if>
+					</if>
+					<td>{$r['creator']}</td>
+					<td><a href="javascript:suredo('{:U('Teacher/Del/exam',array('id'=>$r['exam_id'],'getkey'=>$mykey,'page'=>$mypage['page']))}','确定删除?')">删除</a></td>
+					<td><a href="{:U('Teacher/Add/exam',array('eid'=>$r['exam_id'],'page'=>$mypage['page']))}">编辑</a></td>
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	{$mypage|showpagelast=U("Teacher/Index/index",array('search'=>$search))}
+</div>

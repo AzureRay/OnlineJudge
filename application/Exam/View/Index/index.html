@@ -1,34 +1,41 @@
 <div class="container exam_content">
     <header class='clearfix'>
         <h1>&nbsp;&nbsp;&nbsp;Start Time</h1>
+
         <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+
         <h1>Exam Title</h1>
     </header>
     <div class="main">
         <ul class="cbp_tmtimeline">
             <foreach name='row' item='r'>
                 <li>
-                <time class="cbp_tmtime" datetime="{$r['start_time']}"><span>{$r['start_time']|strtotime|date='Y/m/d',###}</span> <span>{$r['start_time']|strtotime|date='H:i',###}</span></time>
-                <div class="cbp_tmicon"></div>
-                <div class="cbp_tmlabel" onclick="window.location.href='{:U('Home/Index/about',array('eid'=>$r['exam_id']))}'">
-                    <h2>{$r['title']}</h2>
-                    <p>Start From:{$r['start_time']} To {$r['end_time']}
-                <if condition="time() gt strtotime($r['end_time'])">
-                 <label class='label label-success'>已结束</label>
-                <else/>
-                  <if condition="time() lt strtotime($r['start_time'])">
-                    <label class='label label-info'>未开始</label>
-                <else/>
-                    <label class='label label-danger'>正在进行</label>
-                  </if>
-                </if></p>
-                </div>
+                    <time class="cbp_tmtime" datetime="{$r['start_time']}"><span>{$r['start_time']|strtotime|date='Y/m/d',###}</span>
+                        <span>{$r['start_time']|strtotime|date='H:i',###}</span></time>
+                    <div class="cbp_tmicon"></div>
+                    <div class="cbp_tmlabel"
+                         onclick="window.location.href='{:U('Exam/Index/about',array('eid'=>$r['exam_id']))}'">
+                        <h2>{$r['title']}</h2>
+
+                        <p>Start From:{$r['start_time']} To {$r['end_time']}
+                            <if condition="time() gt strtotime($r['end_time'])">
+                                <label class='label label-success'>已结束</label>
+                                <else/>
+                                <if condition="time() lt strtotime($r['start_time'])">
+                                    <label class='label label-info'>未开始</label>
+                                    <else/>
+                                    <label class='label label-danger'>正在进行</label>
+                                </if>
+                            </if>
+                        </p>
+                    </div>
                 </li>
             </foreach>
         </ul>
     </div>
+    {$mypage|showpagelast=###,U("Exam/Index/index")}
 </div>
-<js file="__PUBLIC__/Exam/js/modernizr.custom.js" />
-<css file="__PUBLIC__/Exam/style/component.min.css" />
-<css file="__PUBLIC__/Exam/style/default.min.css" />
+<js file="__PUBLIC__/Exam/js/modernizr.custom.js"/>
+<css file="__PUBLIC__/Exam/style/component.min.css"/>
+<css file="__PUBLIC__/Exam/style/default.min.css"/>

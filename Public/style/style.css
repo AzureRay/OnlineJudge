@@ -1,5 +1,5 @@
 
-.wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;line-height: 1.4em;min-height: 409px;}
+.wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;line-height: 1.4em;min-height: 500px;}
 
 .comWidth{width: 1200px;}
 
@@ -110,7 +110,7 @@ margin-bottom: 10px;}
 
 #register,#login{margin: 30px auto;width: 500px; border: 2px solid #eee;
 	box-shadow: 0 0 5px #eee;}
-#register .register_btn,#login .login_btn{margin-top: 25px;margin-left: 160px; width: 215px;height: 40px;background: #428BCA;
+#register .register_btn,#login .login_btn{margin-top: 25px;margin-left: 198px; width: 215px;height: 40px;background: #428BCA;
     display: block;color: #fff;border: none;font-size: 16px;}
 #register .register_btn span,#login .login_btn span{font-size: 20px;}
 #register .register_btn:hover,#login .login_btn:hover{background: #3071a9;cursor:pointer;}
