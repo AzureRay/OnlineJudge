@@ -19,6 +19,7 @@ class ProblemController extends TemplateController
     }
 
     public function plist() {
+
         $page = I('get.page', 0, 'intval');
         $title = I('get.title', '');
         $source = I('get.source', '');
@@ -73,8 +74,8 @@ class ProblemController extends TemplateController
             $_pid = $_problem['problem_id'];
             if ($isAdministrator === false) {
                 if (empty($isInContest[$_pid])){
-                    if ($_problem['defunct'] == "Y") {
-                        if (strcmp($_problem['author'], $userId) != 0) {
+                    if ($_problem['defunct'] == 'Y') {
+                        if (empty($userId) || strcmp($_problem['author'], $userId) != 0) {
                             unset($problems['data'][$key]);
                         }
                     }
@@ -85,7 +86,7 @@ class ProblemController extends TemplateController
                 break;
             }
         }
-        ddbg($problems);
+        dbg($problems);
         // get problemlist of thauthoris page
         // filter problem by privilege and ac
     }
