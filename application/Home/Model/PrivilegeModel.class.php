@@ -6,6 +6,13 @@ class PrivilegeModel
 
     private static $_instance = null;
 
+    public static $adminPrivilegeTypes = array(
+        'administrator',
+        'contest_creator',
+        'problem_editor',
+        'source_browser',
+    );
+
     private function __construct() {
     }
     private function __clone() {

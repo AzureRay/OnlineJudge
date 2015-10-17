@@ -1,7 +1,6 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
 use Home\Model\UserModel;
 use Home\Model\ProblemModel;
 use Home\Model\ContestModel;
@@ -15,8 +14,7 @@ class ProblemController extends TemplateController
     }
 
     public function detail() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function plist() {
@@ -91,8 +89,7 @@ class ProblemController extends TemplateController
                 break;
             }
         }
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function status() {

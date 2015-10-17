@@ -1,7 +1,6 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
 use Home\Model\UserModel;
 
 class IndexController extends TemplateController
@@ -12,13 +11,11 @@ class IndexController extends TemplateController
     }
 
     public function index() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function faqs() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function ranklist() {
@@ -42,14 +39,12 @@ class IndexController extends TemplateController
         $query['order'] = array('solved' => 'desc', 'submit');
         $field = array('user_id', 'nick', 'solved', 'submit');
         $users = UserModel::instance()->getUserByQuery($query, $field);
-        layout(true);
         $this->assign('ranklists', $users);
-        $this->display();
+        $this->auto_display();
     }
 
     public function mail() {
         // mail 功能页面放在index, 发送接口放在user
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 }

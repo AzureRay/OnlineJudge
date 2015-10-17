@@ -2,7 +2,6 @@
 namespace Exam\Controller;
 
 use Think\Controller;
-use Home\Model\UserModel;
 
 class IndexController extends TemplateController
 {
@@ -45,8 +44,7 @@ class IndexController extends TemplateController
             $this->assign('row', $row);
             $this->assign('name', $name['nick']);
 
-            layout(true);
-            $this->display();
+            $this->auto_display();
         } else {
             $this->error('No Such Exam');
         }
@@ -61,7 +59,6 @@ class IndexController extends TemplateController
         $score = M()->query($query);
         $this->assign('score', $score);
         $this->assign('row', $row);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 }

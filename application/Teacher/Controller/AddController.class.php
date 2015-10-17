@@ -1,9 +1,7 @@
 <?php
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class AddController extends MainController
+class AddController extends TemplateController
 {
 
     private $typename_ch = array('选择题', '判断题', '填空题', '考试');
@@ -33,8 +31,7 @@ class AddController extends MainController
                 $this->assign('page', $page);
                 $this->assign('row', $row);
                 $this->assign('mykey', $key);
-                layout(true);
-                $this->display();
+                $this->auto_display();
             } else {
                 $this->error('No Such Exam!');
             }
@@ -43,8 +40,7 @@ class AddController extends MainController
             $key = set_post_key();
             $this->assign('page', $page);
             $this->assign('mykey', $key);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         }
     }
 
@@ -74,8 +70,7 @@ class AddController extends MainController
                 $this->assign('row', $row);
                 $this->assign('mykey', $key);
                 $this->assign('pnt', $pnt);
-                layout(true);
-                $this->display();
+                $this->auto_display();
             } else {
                 $this->error('No Such Problem!');
             }
@@ -86,8 +81,7 @@ class AddController extends MainController
             $this->assign('page', $page);
             $this->assign('mykey', $key);
             $this->assign('pnt', $pnt);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         }
     }
 
@@ -120,8 +114,7 @@ class AddController extends MainController
             $this->assign('row', $row);
             $this->assign('mykey', $key);
             $this->assign('pnt', $pnt);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         } else {
             $page = I('get.page', 1, 'intval');
             $pnt = M('ex_point')->select();
@@ -129,8 +122,7 @@ class AddController extends MainController
             $this->assign('page', $page);
             $this->assign('mykey', $key);
             $this->assign('pnt', $pnt);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         }
     }
 
@@ -166,8 +158,7 @@ class AddController extends MainController
                 $this->assign('row', $row);
                 $this->assign('mykey', $key);
                 $this->assign('pnt', $pnt);
-                layout(true);
-                $this->display();
+                $this->auto_display();
             } else {
                 $this->error('No Such Problem!');
             }
@@ -178,8 +169,7 @@ class AddController extends MainController
             $this->assign('page', $page);
             $this->assign('mykey', $key);
             $this->assign('pnt', $pnt);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         }
     }
 
@@ -187,13 +177,12 @@ class AddController extends MainController
         $action = I('post.action', '', 'htmlspecialchars');
         if ($action == 'add') {
             $data['point'] = I('post.point', '', 'addslashes');
-            //$id = M('ex_point')->data($data)->add();
-            //$data['id'] = $id;
-            $data['id'] = rand(15, 100);
+            $id = M('ex_point')->data($data)->add();
+            $data['id'] = $id;
             $this->ajaxReturn(json_encode($data));
         } else if ($action == 'del') {
             $id = I('post.id', 0, 'intval');
-            //M('ex_point')->delete($id);
+            M('ex_point')->delete($id);
             echo "ok";
         }
     }

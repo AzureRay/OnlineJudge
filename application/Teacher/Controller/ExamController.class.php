@@ -1,9 +1,7 @@
 <?php
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class ExamController extends MainController
+class ExamController extends TemplateController
 {
 
     private $eid = null;
@@ -59,8 +57,7 @@ class ExamController extends MainController
         $this->assign('prgfillnum', $numofprgfill);
         $this->assign('programnum', $numofprogram);
 
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function userscore() {
@@ -84,8 +81,7 @@ class ExamController extends MainController
         $this->assign('row', $row);
         $this->assign('isonline', $isonline);
         $this->assign('end_timeC', strtotime($prirow['end_time']));
-        layout('layout');
-        $this->display();
+        $this->auto_display();
     }
 
     public function adduser() {
@@ -121,8 +117,7 @@ class ExamController extends MainController
                 $key = set_post_key();
                 $this->assign('mykey', $key);
                 $this->assign('ulist', $ulist);
-                layout(true);
-                $this->display();
+                $this->auto_display();
             }
         }
     }
@@ -155,8 +150,7 @@ class ExamController extends MainController
         $this->assign('fd', $fd);
         $this->assign('student', $student);
 
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function rejudge() {
@@ -165,8 +159,7 @@ class ExamController extends MainController
         } else {
             $key = set_post_key();
             $this->assign('mykey', $key);
-            layout(true);
-            $this->display();
+            $this->auto_display();
         }
     }
 }

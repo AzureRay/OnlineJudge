@@ -1,16 +1,17 @@
 <?php
+/**
+ * drunk , fix later
+ * Created by PhpStorm.
+ * User: jiaying
+ * Date: 15/10/18
+ * Time: 03:30
+ */
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class MainController extends Controller
+class TemplateController extends \Zadmin\Controller\TemplateController
 {
     public function _initialize() {
-
-        if (!session('user_id'))
-            $this->error('Please Login First!');
-        if (!checkAdmin(3))
-            $this->error('请先登陆管理员账号！');
+        parent::_initialize();
     }
 
     protected function isowner($eid) {
@@ -53,5 +54,3 @@ class MainController extends Controller
         return $cnt;
     }
 }
-
-?>

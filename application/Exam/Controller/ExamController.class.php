@@ -1,6 +1,5 @@
 <?php
 namespace Exam\Controller;
-use Think\Controller;
 
 class ExamController extends TemplateController
 {

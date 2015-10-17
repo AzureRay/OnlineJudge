@@ -1,9 +1,7 @@
 <?php
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class InfoController extends MainController
+class InfoController extends TemplateController
 {
 
     public function showpaper() {
@@ -49,8 +47,7 @@ class InfoController extends MainController
             $this->assign('fillans', $fillans);
             $this->assign('fillans2', $fillans2);
 
-            layout(true);
-            $this->display('paper');
+            $this->auto_display(true, 'paper');
         } else {
             $this->error('Wrong Path');
         }

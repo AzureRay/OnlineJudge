@@ -1,8 +1,7 @@
 <?php
 namespace Teacher\Controller;
-use Think\Controller;
 
-class ProblemController extends MainController
+class ProblemController extends TemplateController
 {
 
     private $eid = null;
@@ -95,6 +94,7 @@ class ProblemController extends MainController
         $this->assign('search', $sch['search']);
         $this->assign('problem', $sch['problem']);
 
+        $this->auto_display('judge');
         layout(true);
         $this->display('judge');
     }

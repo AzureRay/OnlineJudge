@@ -1,9 +1,7 @@
 <?php
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class DelController extends MainController
+class DelController extends TemplateController
 {
 
     private $id = null;

@@ -1,9 +1,7 @@
 <?php
 namespace Teacher\Controller;
 
-use Think\Controller;
-
-class IndexController extends MainController
+class IndexController extends TemplateController
 {
 
     public function index() {
@@ -17,8 +15,7 @@ class IndexController extends MainController
         $this->assign('mypage', $mypage);
         $this->assign('search', $sch['search']);
         $this->assign('mykey', $key);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function choose() {
@@ -37,8 +34,7 @@ class IndexController extends MainController
         $this->assign('mykey', $key);
         $this->assign('search', $sch['search']);
         $this->assign('problem', $sch['problem']);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function judge() {
@@ -58,8 +54,7 @@ class IndexController extends MainController
         $this->assign('mypage', $mypage);
         $this->assign('search', $sch['search']);
         $this->assign('problem', $sch['problem']);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function fill() {
@@ -78,8 +73,7 @@ class IndexController extends MainController
         $this->assign('mykey', $key);
         $this->assign('search', $sch['search']);
         $this->assign('problem', $sch['problem']);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function point() {
@@ -88,8 +82,7 @@ class IndexController extends MainController
         }
         $pnt = M('ex_point')->order('point_pos')->select();
         $this->assign('pnt', $pnt);
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function dosort() {

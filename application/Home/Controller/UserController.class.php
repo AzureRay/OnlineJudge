@@ -1,5 +1,6 @@
 <?php
 namespace Home\Controller;
+
 use Home\Model\UserModel;
 use Home\Model\LogsModel;
 use Home\Model\PrivilegeModel;
@@ -12,22 +13,19 @@ class UserController extends TemplateController
     }
 
     public function login() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function register() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function modify() {
-        layout(true);
-        $this->display();
+        $this->auto_display();
     }
 
     public function info() {
-
+        $this->auto_display();
     }
 
     public function doLogin() {
