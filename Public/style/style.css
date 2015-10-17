@@ -39,6 +39,9 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 #side_bar .side_bar_title{color: #3498db;text-align: center;}
 
 
+/*Problem模块Problem_list页面*/
+
+
 /*Problem模块detail页面*/
 .detail .wrap_title{margin-bottom: 20px;padding-bottom: 0; border-bottom: 1px dotted #e4e9f0;display: block; }
 .detail .title{display: inline-block;border-bottom: 3px solid #3498db;font-size: 22px;font-weight: normal;padding-bottom: 5px;color: #555;}
@@ -84,7 +87,7 @@ margin-bottom: 10px;}
 #register h2,#login h2{color: #555;text-align: center;margin-top: 20px;}
 .item_list{font-size: 18px;margin-top: 30px;margin-left: 10px;}
  .item{padding: 4px 0;}
-#register .label,#login .label{width: 150px;color: #777;text-align: right;padding-right: 10px;line-height: 35px;}
+#register .label,#login .label{width: 170px;color: #777;text-align: right;padding-right: 10px;line-height: 35px;}
 .item_info {}
 .item_info input{width: 230px;height:  25px;}
 
@@ -95,7 +98,7 @@ margin-bottom: 10px;}
 #register .register_btn span,#login .login_btn span{font-style: 24px;}
 #register .register_btn:hover,#login .login_btn:hover{background: #3071a9;}  
 
-#register{height: 460px;padding: 30px 30px 10px 30px;}
+#register{height: 460px;padding: 30px 30px 30px 30px;}
 #login{height: 230px; padding: 30px 30px 10px 30px;}
 
 
