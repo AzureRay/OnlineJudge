@@ -20,12 +20,21 @@ class ContestModel
         return self::$_instance;
     }
 
-    public function getProblemIdsInContest($contestId = 0) {
-        if ($contestId != 0) {
-            $where = array('contest_id' => $contestId);
-        } else {
-            $where = array();
-        }
+    public function getNotEndedContests($field = array(), $limit = 100) {
+        $now = date('Y-m-d H:i:s');
+        $where = array(
+            'end_time' => array('gt', $now)
+        );
+        $contestDao = M('contest');
+        $res = $contestDao->field($field)->where($where)->limit($limit)->select();
+        return $res;
+    }
+
+    public function getProblemIdsInContests($contestIds) {
+        if (empty($contestIds)) { return array(); }
+        $where = array(
+            'contest_id' => array('in', $contestIds)
+        );
         $contestProblemDao = M('contest_problem');
         $field = array('problem_id');
         $problemIds = $contestProblemDao->field($field)->where($where)->select();

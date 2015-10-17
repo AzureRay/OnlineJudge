@@ -51,7 +51,7 @@ class UserModel
 
     public function getUsersByUids($userIds, $field = array()) {
         $number = count($userIds);
-        if ($number > 50) {
+        if ($number > 50 || $number < 1) {
             return array();
         }
         else {

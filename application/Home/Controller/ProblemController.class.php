@@ -61,14 +61,18 @@ class ProblemController extends TemplateController
         $problems = ProblemModel::instance()->getProblemByQuery($query, $field);
 
         if ($isAdministrator === false) {
-            $contestProblemIds = ContestModel::instance()->getProblemIdsInContest();
+            $contests = ContestModel::instance()->getNotEndedContests(array('contest_id'));
+            $contestIds = array();
+            foreach ($contests as $_contest) {
+                $contestIds[] = $_contest['contest_id'];
+            }
+            $contestProblemIds = ContestModel::instance()->getProblemIdsInContests($contestIds);
             $isInContest = array();
             foreach ($contestProblemIds as $cpId) {
                 $isInContest[$cpId] = true;
             }
             unset($contestProblemIds);
         }
-        dbg($isAdministrator);
 
         foreach ($problems['data'] as $key => $_problem) {
             $_pid = $_problem['problem_id'];
@@ -86,9 +90,8 @@ class ProblemController extends TemplateController
                 break;
             }
         }
-        dbg($problems);
-        // get problemlist of thauthoris page
-        // filter problem by privilege and ac
+        layout(true);
+        $this->display();
     }
 
     public function status() {
