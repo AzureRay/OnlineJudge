@@ -36,7 +36,7 @@ class UserController extends TemplateController
             $password = I('post.password', '', 'trim,htmlspecialchars');
             $res = UserModel::instance()->isRightPassword($userId, $password);
             if ($res['code'] != 1001) {
-                resultReturn($res['code'], array('msg' => $res['msg']));
+                $this->alertError($res['msg']);
             }
             else {
                 do {
@@ -52,7 +52,7 @@ class UserController extends TemplateController
                             $order = array('time' => 'desc');
                             $res = LogsModel::instance()->getLoginlog($where, 1, $order);
                             if (!empty($res)) {
-                                resultReturn(1002, array('msg' => '比赛期间请不要在不同机器上登录账号！请联系管理员!'));
+                                $this->alertError('比赛期间请不要在不同机器上登录账号!请联系管理员!');
                             }
                         }
                     }
@@ -61,11 +61,11 @@ class UserController extends TemplateController
                 $this->initSessionByUserId($userId);
                 $_password = UserModel::instance()->generatePassword($password);
                 LogsModel::instance()->add2Loginlog($userId, $_password);
-                resultReturn(1001, array('msg' => U('Home/Problem/plist')));
+                $this->success('欢迎使用SDIBTOJ系统,加油AC吧!', "javascript:history.go(-2);",3);
             }
         }
         else {
-            resultReturn(1002, array('msg' => '您已经登陆！'));
+            $this->alertError('您已经登陆!');
         }
     }
 

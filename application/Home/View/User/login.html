@@ -2,14 +2,14 @@
     <div>
         <h2>WELCOME TO SDIBT ONLINE JUDGE</h2>
     </div>
-    <form method="post" id="login_form">
+    <form method="post" id="login_form" action="{:U('Home/User/doLogin')}">
         <div class="item_list">
             <div class="item clearfix">
                 <div class="label fl">
                     <span>User ID</span>
                 </div>
                 <div class="item_info fl">
-                    <input type="text" name="userid" id="login_userid"></div>
+                    <input type="text" name="userId" id="login_userid"></div>
             </div>
             <div class="item clearfix">
                 <div class="label fl">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div >
-            <input type="button" class="login_btn" value="登陆" />
+            <input type="submit" class="login_btn" value="登陆" />
         </div>
     </form>
     </div>

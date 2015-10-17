@@ -29,20 +29,6 @@ $(function(){
 
     //test
 
-    $(".login_btn").click(function(){
-        $.post("doLogin",{
-                    userId : $('#login_userid').val(),
-                    password : $('#login_password').val()
-                }, function (data, textStatus){
-                    if (data.code != 1001) {
-                        alert(data.result.msg);
-                    } else {
-                        location.href = data.result.msg;
-                    }
-                },'json'
-        );
-    });
-
     $(".register_btn").click(function(){
         $.post("doRegister",{
                     userId : $('#register_userid').val(),
@@ -55,6 +41,8 @@ $(function(){
                 },function(data,textStatus){
                     if(data.code != 1001) {
                         alert(data.result.msg);
+                    } else {
+                        location.href = data.result.msg;
                     }
                 },'json'
         );

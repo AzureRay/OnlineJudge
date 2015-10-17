@@ -13,9 +13,11 @@ class TemplateController extends Controller
 
     public function _initialize() {
 
+        header('Content-type:text/html;charset=utf-8');
+
         header("Pragma: no-cache");
-         // HTTP/1.0
-        //header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+        // HTTP/1.0
+        header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
          // HTTP/1.1
 
         $this->initSqlInjectionFilter();
@@ -45,5 +47,12 @@ class TemplateController extends Controller
         foreach ($_privileges as $privilege) {
             session($privilege['rightstr'], true);
         }
+    }
+
+    protected function alertError($errmsg) {
+        echo "<script language='javascript'>\n";
+        echo "alert('$errmsg');\n";
+        echo "history.go(-1);";
+        echo "</script>\n";
     }
 }
