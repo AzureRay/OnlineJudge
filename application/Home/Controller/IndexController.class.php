@@ -39,4 +39,10 @@ class IndexController extends TemplateController
         $users = UserModel::instance()->getUserByQuery($query, $field);
         dbg($users);
     }
+
+    public function mail() {
+        // mail 功能页面放在index, 发送接口放在user
+        layout(true);
+        $this->display();
+    }
 }
