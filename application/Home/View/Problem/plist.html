@@ -1,0 +1,52 @@
+<title>problem list</title>
+<style type="text/css">
+.table_list{;}
+</style>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+    $('tr:odd').css('background','#F9F9F9');
+});
+</script>
+<div id="problem_list" class="clearfix">
+   <div class="problem_list_search">
+      <form>
+          <span class="search_title fl">Search</span>
+          <div class="search_text fl">
+            <input type="text" />
+          </div>
+          <select class="search_select fl">
+            <option>Problem Id</option>
+            <option>Title</option>
+            <option>Source</option>
+          </select>
+          <button type="submit" class="search_btn">
+            <span>搜 索</span>
+          </button>
+      </form>
+   </div> 
+   <table class="table_list" border="1">
+       <thead>
+           <tr>
+               <th class="plist_id">Problem ID</th>
+               <th class="plist_title">Title</th>
+               <th class="plist_ratio">Ratio(AC/Submit)</th>
+               <th class="plist_difficulty">Difficulty</th>
+               <th class="plist_data">Date</th>
+           </tr>
+       </thead>
+       <tbody>
+           <for start="1" end="100">
+             <tr>
+               <td class="plist_id">1002</td>
+               <td class="plist_title">用筛法求之N内的素数。(程序填空)</td>
+               <td class="plist_ratio">30%(437/1459)</td>
+               <td class="plist_difficulty">70%</td>
+               <td class="plist_data">2015-10-16</td>
+             </tr>
+           </for>
+
+       </tbody>
+   </table>
+</div>
+</div> <!--end of wrap-->

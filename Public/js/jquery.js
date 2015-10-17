@@ -29,14 +29,27 @@ $(function(){
 
     //test
 
-    $("#send").click(function(){
-        var a = $('#userid').val();
-        var b = $('#password').val();
+    $(".login_btn").click(function(){
         $.post("doLogin",{
-                    userId : $('#userid').val(),
-                    password : $('#password').val()
+                    userId : $('#login_userid').val(),
+                    password : $('#login_password').val()
                 }, function (data, textStatus){
                        alert(data.result.msg);
+                },'json'
+        );
+    });
+
+    $(".register_btn").click(function(){
+        $.post("doLogin",{
+                    userId : $('#register_userid').val(),
+                    nick : $('#nick').val(),
+                    password : $('#register_password').val(),
+                    rptpassword : $('#rptpassword').val(),
+                    school : $('#school').val(),
+                    email : $('#email').val(),
+                    vcode : $('#vcode').val()
+                },function(data,textStatus){
+                        alert(data.result.msg);
                 },'json'
         );
     });
