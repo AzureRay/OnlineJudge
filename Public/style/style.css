@@ -93,7 +93,7 @@ margin-bottom: 10px;}
 #register .register_btn,#login .login_btn{margin-top: 20px;margin-left: 180px; width: 215px;height: 40px;background: #428BCA;
     display: block;color: #fff;border: none;font-size: 16px;}
 #register .register_btn span,#login .login_btn span{font-style: 24px;}
-#register .register_btn:hover,#login .login_btn:hover{background: #3071a9;}
+#register .register_btn:hover,#login .login_btn:hover{background: #3071a9;cursor:pointer;}
 
 #register{height: 460px;padding: 30px 30px 10px 30px;}
 #login{height: 230px; padding: 30px 30px 10px 30px;}
