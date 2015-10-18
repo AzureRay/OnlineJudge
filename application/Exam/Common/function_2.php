@@ -8,7 +8,7 @@ function getSequenceByRand(&$sequence, $start, $finish, $randNum) {
         $staticNumber[] = $i;
     }
     for ($i = 1; $i <= $offset; ++$i) {
-        $div = floor($modNumber / $fac[$offset - $i]);
+        $div = intval($modNumber / $fac[$offset - $i]);
         $modNumber = $modNumber % $fac[$offset - $i];
         $sequence[$start + $i + 1] = $staticNumber[$div] - 1 + $start;
         array_splice($staticNumber, $div, 1);
