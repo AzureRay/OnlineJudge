@@ -14,11 +14,11 @@ class TemplateController extends Controller
     protected $isNeedFilterSql = false;
 
     public function _initialize() {
-        
+
         header("Pragma: no-cache");
         // HTTP/1.0
         header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
-         // HTTP/1.1
+        // HTTP/1.1
 
         $this->initSqlInjectionFilter();
         $this->initLoginUserInfo();

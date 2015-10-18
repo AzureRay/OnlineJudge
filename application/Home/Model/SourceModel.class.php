@@ -44,4 +44,38 @@ class SourceModel
         }
         return $errorDao;
     }
+
+    public function getSolutionsByProblemIdAndUserId($problemId, $userId, $field = array()) {
+        if (empty($problemId)) {
+            return array();
+        } else {
+            $solutionDao = M('solution');
+            $where = array(
+                'problem_id' => $problemId,
+                'user_id'    => $userId
+            );
+            $res = $solutionDao->field($field)->where($where)->select();
+            return $res;
+        }
+    }
+
+    public function getSolutionsByQuery($query, $field = array()) {
+        $where = array();
+        if (!empty($query['problem_id'])) {
+            $where['problem_id'] = $query['problem_id'];
+        }
+        if (!empty($query['user_id'])) {
+            $where['user_id'] = $query['user_id'];
+        }
+        if (!empty($query['result'])) {
+            $where['result'] = $query['result'];
+        }
+        if (!empty($query['contest_id'])) {
+            $where['contest_id'] = $query['contest_id'];
+        }
+
+        $solutionDao = M('solution');
+        $res = $solutionDao->field($field)->where($where)->select();
+        return $res;
+    }
 }

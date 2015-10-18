@@ -12,4 +12,7 @@ namespace Home\Controller;
 
 class ContestController extends TemplateController {
 
+    public function index() {
+        echo 'hello world';
+    }
 }

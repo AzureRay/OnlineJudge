@@ -35,15 +35,13 @@ class UserController extends TemplateController
             $res = UserModel::instance()->isRightPassword($userId, $password);
             if ($res['code'] != 1001) {
                 $this->alertError($res['msg']);
-            }
-            else {
+            } else {
                 do {
                     if (C('OJ_VIP_CONTEST')) {
                         $isAdmin = PrivilegeModel::instance()->isAdministrator($userId);
                         if ($isAdmin) {
                             break;
-                        }
-                        else {
+                        } else {
                             $today = date('Y-m-d');
                             $ip = get_client_ip();
                             $where = array('user_id' => $userId, 'ip' => array('neq', $ip), 'time' => array('egt', $today));
@@ -57,12 +55,16 @@ class UserController extends TemplateController
                 } while (false);
 
                 $this->initSessionByUserId($userId);
+                // update user access time
+                $where = array('user_id' => $userId);
+                $option = array('accesstime' => date('Y-m-d H:i:s'));
+                UserModel::instance()->updateUserInfo($where, $option);
+
                 $_password = UserModel::instance()->generatePassword($password);
                 LogsModel::instance()->add2Loginlog($userId, $_password);
-                $this->success('欢迎使用SDIBTOJ系统,加油AC吧!', "javascript:history.go(-2);",3);
+                $this->success('欢迎使用SDIBTOJ系统,加油AC吧!', "javascript:history.go(-2);", 3);
             }
-        }
-        else {
+        } else {
             $this->alertError('您已经登陆!');
         }
     }
@@ -97,12 +99,10 @@ class UserController extends TemplateController
                 $_password = $userModel->generatePassword($password);
                 LogsModel::instance()->add2Loginlog($userId, $_password);
                 resultReturn(1001, array('msg' => U('/')));
-            }
-            else {
+            } else {
                 resultReturn(1002, array('msg' => '系统错误,注册失败!'));
             }
-        }
-        else {
+        } else {
             resultReturn(1002, array('msg' => '用户已存在!'));
         }
     }
@@ -110,8 +110,7 @@ class UserController extends TemplateController
     public function doModify() {
         if (empty($this->userInfo)) {
             redirect(U('login'), 1, '请先登录账号!');
-        }
-        else {
+        } else {
             $userId = session('user_id');
             $unick = I('post.nick', $userId);
             $password = I('post.password', '');
@@ -123,12 +122,10 @@ class UserController extends TemplateController
             $res = UserModel::instance()->isRightPassword($userId, $password);
             if ($res['code'] != 1001) {
                 resultReturn($res['code'], array('msg' => $res['msg']));
-            }
-            else {
+            } else {
                 if (strlen($npassword) != 0) {
                     $password = $npassword;
-                }
-                else {
+                } else {
                     $rptPassword = $password;
                 }
 
@@ -178,8 +175,7 @@ class UserController extends TemplateController
 
         if (!isValidStringLength($email, -1, 100)) {
             resultReturn(1002, array('msg' => '邮箱长度不符合规范!'));
-        }
-        else {
+        } else {
             if (!empty($email) && !isValidEmail($email)) {
                 resultReturn(1002, array('msg' => '邮箱格式不符合规范!'));
             }

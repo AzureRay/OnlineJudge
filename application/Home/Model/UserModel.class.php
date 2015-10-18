@@ -1,5 +1,6 @@
 <?php
 namespace Home\Model;
+
 use Think\Exception;
 use Think\Model;
 
@@ -10,6 +11,7 @@ class UserModel
 
     private function __construct() {
     }
+
     private function __clone() {
     }
 
@@ -31,15 +33,14 @@ class UserModel
         $oldPassword = $userInfo['password'];
         if ($this->confirmPassword($password, $oldPassword)) {
             return array('code' => 1001, 'msg' => '登陆成功');
-        }
-        else {
+        } else {
             return array('code' => 1002, 'msg' => '密码错误!');
         }
     }
 
     public function getUnickByUid($userId) {
         $res = $this->getUserByUid($userId, array('nick'));
-        return $res['nick'] ? : '';
+        return $res['nick'] ?: '';
     }
 
     public function getUserByUid($userId, $field = array()) {
@@ -53,8 +54,7 @@ class UserModel
         $number = count($userIds);
         if ($number > 50 || $number < 1) {
             return array();
-        }
-        else {
+        } else {
             $userDao = M('users');
             $where = array('user_id' => array('in', $userIds));
             $return = $userDao->field($field)->where($where)->select();
@@ -74,8 +74,7 @@ class UserModel
         $userDao = M('users');
         try {
             $res = $userDao->data($option)->add();
-        }
-        catch(Exception $e) {
+        } catch (Exception $e) {
             $res = 0;
         }
         return $res;
@@ -85,8 +84,7 @@ class UserModel
         $userDao = M('users');
         try {
             $userDao->where($where)->data($option)->limit($limit)->save();
-        }
-        catch(Exception $e) {
+        } catch (Exception $e) {
         }
     }
 
@@ -135,8 +133,7 @@ class UserModel
             $password = md5($nowPassword);
             if ($password == $oldPassword) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -145,8 +142,7 @@ class UserModel
         $hash = base64_encode(sha1(md5($nowPassword) . $salt, true) . $salt);
         if (strcmp($hash, $oldPassword) == 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -10,6 +10,7 @@ class ContestModel
 
     private function __construct() {
     }
+
     private function __clone() {
     }
 
@@ -31,13 +32,25 @@ class ContestModel
     }
 
     public function getProblemIdsInContests($contestIds) {
-        if (empty($contestIds)) { return array(); }
+        if (empty($contestIds)) {
+            return array();
+        }
         $where = array(
             'contest_id' => array('in', $contestIds)
         );
-        $contestProblemDao = M('contest_problem');
         $field = array('problem_id');
+        $contestProblemDao = M('contest_problem');
         $problemIds = $contestProblemDao->field($field)->where($where)->select();
         return $problemIds;
+    }
+
+    public function getContestIdsByProblemId($problemId) {
+        $where = array(
+            'problem_id' => $problemId,
+        );
+        $field = array('contest_id');
+        $contestProblemDao = M('contest_problem');
+        $contestIds = $contestProblemDao->field($field)->where($where)->select();
+        return $contestIds;
     }
 }

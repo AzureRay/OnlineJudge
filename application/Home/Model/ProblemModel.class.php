@@ -29,6 +29,13 @@ class ProblemModel
             'problem_id' => $problemId
         );
         $field = array('defunct');
+        $problemDao = M('problem');
+        $res = $problemDao->field($field)->where($where)->find();
+        if (empty($res)) {
+            return false;
+        } else {
+            return ($res['defunct'] == 'Y' ? false : true);
+        }
     }
 
     public function getProblemByQuery($query, $field = array()) {

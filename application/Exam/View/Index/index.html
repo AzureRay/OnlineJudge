@@ -15,7 +15,7 @@
                         <span>{$r['start_time']|strtotime|date='H:i',###}</span></time>
                     <div class="cbp_tmicon"></div>
                     <div class="cbp_tmlabel"
-                         onclick="window.location.href='{:U('Exam/Index/about',array('eid'=>$r['exam_id']))}'">
+                         onclick="window.location.href='{:U('/Exam/',array('about'=>$r['exam_id']))}'">
                         <h2>{$r['title']}</h2>
 
                         <p>Start From:{$r['start_time']} To {$r['end_time']}

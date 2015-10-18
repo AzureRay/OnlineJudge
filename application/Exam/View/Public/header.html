@@ -32,14 +32,14 @@
         <div class="collapse navbar-collapse" id="header-navbar">
             <ul class="nav navbar-nav">
                 <li><a href="{:U('/')}">Online Judge</a></li>
-                <li id="index_nav_list"><a href="{:U('Exam/Index/index')}">Exam List</a></li>
+                <li id="index_nav_list"><a href="{:U('/Exam')}">Exam List</a></li>
                 <if condition="empty(session('administrator')) eq false or
                         empty(session('contest_creator')) eq false or
                         empty(session('problem_editor')) eq false"
                         >
-                    <li><a href="{:U('Teacher/Index/index')}">教师管理</a></li>
+                    <li><a href="{:U('/Teacher')}">教师管理</a></li>
                     <else/>
-                    <li id="index_nav_score"><a href="{:U('Exam/Index/score')}">个人中心</a></li>
+                    <li id="index_nav_score"><a href="{:U('/Exam/Index/score')}">个人中心</a></li>
                 </if>
             </ul>
             <!-- first ul end -->
