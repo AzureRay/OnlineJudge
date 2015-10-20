@@ -8,6 +8,8 @@ table{border-collapse: collapse;}
 .fl{float: left;}
 .fr{float: right;}
 
+select,input,textarea{outline: none;border:none;}
+em{font-style: normal;}
 /*清除浮动*/
 .clearfix:after{content: "";display: block;clear: both;}
 .clearfix{zoom:1;}
