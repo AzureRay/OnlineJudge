@@ -145,6 +145,14 @@ class UserController extends TemplateController
         $this->success('记得下次再来AC哦!', U('Index/index'), 2);
     }
 
+    public function doMail() {
+        if (empty($this->userInfo)) {
+            resultReturn(1002, array('msg' => '请先登陆账号!'));
+        } else {
+
+        }
+    }
+
     private function filterParam($userId, &$unick, $password, $rptpassword, $school, $email) {
         if (!isValidStringLength($userId, 3, 20)) {
             resultReturn(1002, array('msg' => '用户ID长度限制在3-20之间!'));

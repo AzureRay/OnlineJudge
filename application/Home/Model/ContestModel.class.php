@@ -44,13 +44,14 @@ class ContestModel
         return $problemIds;
     }
 
-    public function getContestIdsByProblemId($problemId) {
+    public function getContestsByProblemId($problemId, $field = array(), $limit = 1) {
+        $now = date('Y-m-d H:i:s');
         $where = array(
             'problem_id' => $problemId,
+            'end_time'   => array('gt', $now)
         );
-        $field = array('contest_id');
         $contestProblemDao = M('contest_problem');
-        $contestIds = $contestProblemDao->field($field)->where($where)->select();
+        $contestIds = $contestProblemDao->field($field)->where($where)->limit($limit)->select();
         return $contestIds;
     }
 }
