@@ -11,15 +11,16 @@ $(function(){
 <div id="problem_list" class="clearfix">
    <div class="problem_list_search">
       <form>
-          <span class="search_title fl">Search</span>
-          <div class="search_text fl">
+          <!-- <span class="search_title fl">Search</span> -->
+          <select class="search_select">
+            <option value="0">ProblemId</option>
+            <option value="1">Title</option>
+            <option value="2">Source</option>
+          </select>
+          <div class="search_text">
             <input type="text" />
           </div>
-          <select class="search_select fl">
-            <option>Problem Id</option>
-            <option>Title</option>
-            <option>Source</option>
-          </select>
+          
           <button type="submit" class="search_btn">
             <span>搜 索</span>
           </button>
@@ -48,5 +49,23 @@ $(function(){
 
        </tbody>
    </table>
+   <div class="page fr">
+     <ul class="page_list">
+       <li><a href="#" ><span>上一页</span></a></li>
+       <li><a href="#" class="page_active"><span>1</span></a></li>
+       <li><a href="#"><span>2</span></a></li>
+       <li><a href="#"><span>3</span></a></li>
+       <li><a href="#"><span>4</span></a></li>
+       <li><a href="#"><span>5</span></a></li>
+       <li><a href="#"><span>6</span></a></li>
+       <li><a href="#"><span>7</span></a></li>
+       <li><a href="#"><span>8</span></a></li>
+       <li><a href="#"><span>9</span></a></li>
+       <li><a href="#"><span>... 32</span></a></li>
+       <li class="page_input"><input type="text" class="page_txt" /><em>/<span>32页</span></em></li>
+       <li><a href="#"><span>下一页</span></a></li>
+       
+     </ul>
+   </div>
 </div>
 </div> <!--end of wrap-->

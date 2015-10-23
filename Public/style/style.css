@@ -6,8 +6,8 @@
 
 /*table的公共样式，problem的plist--table*/
 tr{height: 30px;}
-td{width: 100px;height: 40px;text-align: center; }
-
+td{width: 200px;height: 40px;text-align: center; }
+th{width: 200px;height: 40px;text-align: center;}
 /*header文件*/
 #header{height: 70px;}
 #header .logo img{width: 248px;height: 49px;background: url(../images/logo.jpg) 0 0 no-repeat;
@@ -44,20 +44,30 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 
 
 /*Problem模块plist页面*/
-#problem_list{width: 1100px;margin: 90px auto;}
-.problem_list_search{margin-bottom: 20px;}
-.problem_list_search .search_title{margin-left: 10px;line-height: 30px;margin-right: 20px}
-.problem_list_search .search_text{border:1px solid #B9B9B9;margin-right: 20px;}
-.problem_list_search .search_text input{width: 200px;height: 30px;border:1px solid #B9B9B9;border:none;}
-.problem_list_search .search_select{width: 100px;height: 30px;border:1px solid #B9B9B9;margin-right: 20px;}
-.problem_list_search .search_btn{width: 50px;height: 30px;border:none;background: #428BCA;}
+#problem_list{width: 1100px;margin: 60px 0 220px 70px;}
+.problem_list_search{margin-bottom: 10px;position: relative;height: 40px;}
+.problem_list_search .search_select{width: 86px;height: 32px;border:1px solid #B9B9B9;background: #B9C6D2;
+                        position: absolute;right: 261px;}
+.problem_list_search .search_text{border:1px solid #B9B9B9;margin-right: 10px;position: absolute;right: 50px;border-left: none;}
+.problem_list_search .search_text input{width: 200px;height: 30px;border:1px solid #B9B9B9;border:none;padding-left: 10px;}
+.problem_list_search .search_btn{width: 50px;height: 32px;border:none;background: #428BCA;position: absolute;right: 0px;top: 0px;}
 
-.table_list{border:1px solid #ddd;border-collapse: collapse}
+.table_list{border:1px solid #ddd;border-collapse: collapse;width: 1100px;}
 .plist_id{}
 .plist_title{padding-left: 20px; text-align: left;width: 600px;}
 .plist_ratio{}
 .plist_difficulty{}
 .plist_data{}
+
+.page{margin-top: 20px;font-size: 14px;}
+.page_list{}
+.page_list li{float: left;} 
+.page_list li a{display: block;height: 30px;border:1px solid #ddd;color: #656565;
+    margin-left: 4px;line-height: 30px;text-align: center;padding: 0 12px;border:#CCC solid 1px;} 
+.page_list .page_input{height: 30px;border:#CCC solid 1px;margin-left: 4px;padding: 0 8px;color: #656565;}
+.page_list .page_txt{border: 1px solid #ddd;width: 28px;height: 16px;line-height: 20px;margin-right: 6px;}
+.page_list .page_input span{margin-left: 4px;line-height: 30px;}
+.page_list .page_active{border-color: red;}
 
 /*Problem模块detail页面*/
 .detail .wrap_title{margin-bottom: 20px;padding-bottom: 0; border-bottom: 1px dotted #e4e9f0;display: block; }
