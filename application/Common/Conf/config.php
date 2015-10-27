@@ -4,9 +4,9 @@ return array(
     //Database config
     'DB_TYPE' => 'mysql',
     'DB_HOST' => '127.0.0.1',
-    'DB_NAME' => 'jol',
+    'DB_NAME' => 'test',
     'DB_USER' => 'root',
-    'DB_PWD' => 'weijianxia',
+    'DB_PWD' => '',
     'DB_PREFIX' => '',
 
     'LOAD_EXT_CONFIG' => 'base,route', // 扩展配置文件名称

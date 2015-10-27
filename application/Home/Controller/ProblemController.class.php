@@ -15,6 +15,35 @@ class ProblemController extends TemplateController
     }
 
     public function detail() {
+
+        $pid = I('get.id', 0, 'intval');
+
+        $where = array(
+            'problem_id' => $pid
+        );
+        $problemInfo = ProblemModel::instance()->getProblemInfo($where);
+        if (empty($problemInfo)) {
+            $this->error('Sorry!! No Such Problem!');
+        } else {
+            if (!session('administrator')) {
+                $defunct = $problemInfo['defunct'];
+                if ($defunct == 'Y') {
+                    if (!empty($this->userInfo)) {
+                        $author = $problemInfo['author'];
+                        if (strcmp($author, $this->userInfo['user_id']) != 0) {
+                            $this->error('Sorry!! No Such Problem!');
+                        }
+                    } else {
+                        $this->error('Sorry!! No Such Problem!');
+                    }
+                }
+                $contestIds = ContestModel::instance()->getContestsByProblemId($pid, array('contest_id'));
+                if (!empty($contestIds)) {
+                    $this->error('Sorry!! The Problem is not available now!');
+                }
+            }
+        }
+
         $this->auto_display();
     }
 

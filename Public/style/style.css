@@ -2,7 +2,8 @@
 .wrap{width: 1200px;margin: 10px auto;padding-left: 10px; margin-bottom: 50px;line-height: 1.4em;min-height: 500px;}
 
 .comWidth{width: 1200px;}
-
+.border_1{border:1px solid #cccccc;}
+.border_1:focus{}
 
 /*table的公共样式，problem的plist--table*/
 tr{height: 30px;}
@@ -47,10 +48,10 @@ border-bottom: 1px solid #f3f3f3;padding: 10px;margin-bottom: 10px;}
 #problem_list{width: 1100px;margin: 60px 0 220px 70px;}
 .problem_list_search{margin-bottom: 10px;position: relative;height: 40px;}
 .problem_list_search .search_select{width: 86px;height: 32px;border:1px solid #B9B9B9;background: #B9C6D2;
-                        position: absolute;right: 261px;}
+                        position: absolute;right: 271px;}
 .problem_list_search .search_text{border:1px solid #B9B9B9;margin-right: 10px;position: absolute;right: 50px;border-left: none;}
-.problem_list_search .search_text input{width: 200px;height: 30px;border:1px solid #B9B9B9;border:none;padding-left: 10px;}
-.problem_list_search .search_btn{width: 50px;height: 32px;border:none;background: #428BCA;position: absolute;right: 0px;top: 0px;}
+.problem_list_search .search_text input{width: 200px;height: 28px;border:1px solid #B9B9B9;border:none;padding-left: 10px;}
+.problem_list_search .search_btn{width: 50px;height: 31px;border:none;background: #428BCA;position: absolute;right: 0px;top: 0px;}
 
 .table_list{border:1px solid #ddd;border-collapse: collapse;width: 1100px;}
 .plist_id{}

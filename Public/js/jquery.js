@@ -47,4 +47,9 @@ $(function(){
                 },'json'
         );
     });
+
+    //表格展示
+    $(function(){
+        $('tr:odd').css('background','#F9F9F9');
+    });
 });
